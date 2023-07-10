@@ -1,0 +1,46 @@
+/*
+  Footer Stuff
+*/
+
+footer {
+  margin: auto;
+  bottom: 0;
+  padding: 50px 0px 50px 0px;
+  width: 100%;
+  color: #f4ffff;
+  font-size: 12px;
+  text-align: center;
+}
+
+.footer_nav {
+  align-items: center;
+}
+
+.footer_nav ul {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.footer_nav li {
+  list-style-type: none;
+  display: inline;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footer_nav a {
+  color: #f4ffff;
+  text-decoration: none;
+}
+
+.footer_nav a:hover {
+  text-decoration: underline;
+}
+
+.footer_hr {
+  width: 30%;
+  min-width: 25em;
+  background-color: #eaeaea;
+  opacity: 30%;
+}

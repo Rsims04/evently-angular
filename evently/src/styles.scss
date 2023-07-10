@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  background-image: radial-gradient(#45419a, rgba(0, 0, 0, 0.1));
+  background-attachment: fixed;
+  background-color: black;
+
+  font-family: "Nunito", sans-serif;
+}
+
+h1 {
+  color: #6d4199;
+  font-size: 32px;
+}
+
+h2 {
+  color: #6d4199;
+  font-size: 26px;
+}
+
+h3 {
+  color: #6d4199;
+  font-size: 26px;
+}
