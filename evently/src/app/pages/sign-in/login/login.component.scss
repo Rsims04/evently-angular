@@ -30,8 +30,8 @@
 // }
 
 /*
-  FLEX
-*/
+    FLEX
+  */
 
 // .wrapper {
 //   display: flex;
@@ -118,13 +118,26 @@
 
 .logindetails {
   margin: 0 auto;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   text-align: left;
   width: 230px;
 }
 
+.loginButtons {
+  margin-top: 2em;
+}
+
+.is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 /*
-  INPUTS
-*/
+    INPUTS
+  */
 
 input {
   border: none;
@@ -139,8 +152,8 @@ input:focus {
 }
 
 /*
-  BUTTONS
-*/
+    BUTTONS
+  */
 
 button {
   margin: 0 auto;
@@ -468,8 +481,8 @@ hr.rounded {
 // }
 
 /*
-  RESPONSIVE
-*/
+    RESPONSIVE
+  */
 @media only screen and (max-width: 768px) {
   .logInPage,
   .main {
