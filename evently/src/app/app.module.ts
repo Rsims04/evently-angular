@@ -8,6 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CoreModule } from './core/core.module';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     HomeComponent,
     SettingsComponent,
     SignInComponent,
+    ManageUsersComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
