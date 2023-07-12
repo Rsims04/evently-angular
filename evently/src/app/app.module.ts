@@ -4,11 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/sign-in/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CoreModule } from './core/core.module';
-import { CreateAccountComponent } from './pages/sign-in/createaccount/createaccount.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 @NgModule({
