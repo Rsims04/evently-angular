@@ -1,0 +1,83 @@
+/* 
+    FLEX 
+*/
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 0px 15px 0px;
+}
+
+/*
+    SETTINGS 
+*/
+
+.selectOption {
+  margin: 10px 0px 10px 0px;
+  padding: 0px 0px 40px 0px;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.selectSetting {
+  flex-grow: 3;
+}
+
+.settingsTitle {
+  margin: 20px;
+  text-decoration: none;
+  color: #6d4199;
+}
+
+.selectSetting {
+  margin: 10px;
+  padding: 0px 20px 20px 20px;
+  position: relative;
+  border: none;
+  background-color: #6d41990e;
+  border-radius: 8px;
+}
+
+.menu_hr {
+  border: 1px solid #6d41990e;
+}
+
+#lightModeButton {
+  margin: 0;
+  display: inline;
+  background-color: #d4ba15;
+  border: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+#lightModeButton:focus {
+  margin: 0;
+  display: inline;
+  background-color: orange;
+  border: orange;
+  width: 40px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+#darkModeButton {
+  margin: 0;
+  display: inline;
+  background-color: #8011e2;
+  border: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+#darkModeButton:focus {
+  margin: 0;
+  display: inline;
+  background-color: orange;
+  border: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 3px;
+}
