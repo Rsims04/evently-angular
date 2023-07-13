@@ -35,6 +35,6 @@ export class LoginComponent implements OnInit {
     }
 
     alert('Can Login...');
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('dashboard');
   }
 }
