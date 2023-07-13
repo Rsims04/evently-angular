@@ -11,23 +11,48 @@ export class UserService {
 
   apiUrl: User[] = [
     {
-      username: 'john',
+      id: '1',
+      username: 'John',
+      password: '1234',
+      firstName: 'John',
+      lastName: 'Smith',
+      avatar: '/link',
+      token: 'abcd',
     },
     {
+      id: '2',
       username: 'Alice',
+      password: '1234',
+      firstName: 'Alice',
+      lastName: 'Dawson',
+      avatar: '/link',
+      token: 'abcd',
+    },
+    {
+      id: '3',
+      username: 'Bob',
+      password: '1234',
+      firstName: 'Bob',
+      lastName: 'Reynolds',
+      avatar: '/link',
+      token: 'abcd',
     },
   ];
 
-  constructor(private http: HttpClient) {
-    console.log(this.apiUrl);
-  }
+  constructor(private http: HttpClient) {}
 
   getUsers() {
     // return this.http.get(`${this.apiUrl}`);
+    console.log(this.apiUrl);
     return this.apiUrl;
   }
 
   getUser(username: string) {
-    return this.http.get(`${this.apiUrl}/${username}`);
+    console.log(this.apiUrl);
+    console.log(username);
+    // return this.http.get(`users/${username}`);
+    let g = this.apiUrl.filter((res) => res.username?.indexOf(username) !== -1);
+    console.log(g);
+    return g[0];
   }
 }
