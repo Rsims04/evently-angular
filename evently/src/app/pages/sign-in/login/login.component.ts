@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.f);
-    // this.auth.login(this.f, this.f['password'].errors);
+    this.auth.login(this.f['email'].value, this.f['password'].value);
 
     alert('Can Login...');
+    alert(this.f['email'].value + this.f['password'].value);
     // this.router.navigateByUrl('dashboard');
   }
 }
