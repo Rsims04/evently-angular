@@ -9,9 +9,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 const signInModule = () =>
   import('../app/pages/sign-in/sign-in.module').then((x) => x.SignInModule);
 
+const userModule = () =>
+  import('../app/user/user.module').then((x) => x.UserModule);
+
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: SignInComponent,
     loadChildren: signInModule,
   },
@@ -30,6 +34,11 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     component: ProfileComponent,
+  },
+
+  {
+    path: 'users',
+    loadChildren: userModule,
   },
 ];
 

@@ -1,0 +1,9 @@
+<section class="section">
+  <div class="container">
+    <div class="card" *ngIf="user">
+      <img width="200px" [src]="user.avatar" />
+      <h2>{{ user.username }}</h2>
+      {{ user | json }}
+    </div>
+  </div>
+</section>
