@@ -11,10 +11,12 @@ import { CoreModule } from './core/core.module';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+
+import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AuthService } from './shared/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
