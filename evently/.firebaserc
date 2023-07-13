@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "evently-angular": {
+      "hosting": {
+        "evently": [
+          "evently-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "evently-angular"
+  }
+}
