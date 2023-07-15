@@ -16,8 +16,8 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { AuthService } from './shared/auth.service';
-import { ModalComponent } from './modal/modal.component';
+import { AuthService } from './core/shared/auth.service';
+import { ModalComponent } from './core/components/modal/modal.component';
 
 @NgModule({
   declarations: [
