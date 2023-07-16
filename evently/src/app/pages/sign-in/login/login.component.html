@@ -1,18 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="logindetails">
-    <label>Username: </label><br />
-    <input type="text" formControlName="username" required />
-    <br /><br />
-    <div class="is-error" *ngIf="submitted && f['username'].errors">
-      *Your Username Is Required.
-    </div>
-  </div>
-  <div class="logindetails">
     <label>Email: </label><br />
     <input type="text" formControlName="email" required />
     <br /><br />
     <div class="is-error" *ngIf="submitted && f['email'].errors">
-      *Your Email Is Required.
+      *Your Email Is Required and Must Be Valid.
     </div>
   </div>
   <div class="logindetails">
