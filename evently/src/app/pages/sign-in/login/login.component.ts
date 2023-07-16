@@ -1,3 +1,4 @@
+import { Conditional } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      username: ['', Validators.required],
+      // username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     if (this.form.invalid) {
+      console.log('INVALID');
       return;
     }
 
