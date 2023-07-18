@@ -73,6 +73,15 @@
 //   cursor: pointer;
 // }
 
+.is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 0.5em;
+  margin-bottom: 0em;
+  text-align: center;
+  font-size: 0.8em;
+}
+
 // Change this to login button
 .loginButton {
   float: right;
