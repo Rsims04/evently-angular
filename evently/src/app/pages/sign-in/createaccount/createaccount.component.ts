@@ -46,6 +46,8 @@ export class CreateAccountComponent {
 
     // this.auth.login(this.f['email'].value, this.f['password'].value);
 
+    this.auth.register(this.f['email'].value, this.f['password'].value);
+
     alert('Can Sign Up...');
     // alert(this.f['email'].value + this.f['password'].value);
     // this.router.navigateByUrl('dashboard');
