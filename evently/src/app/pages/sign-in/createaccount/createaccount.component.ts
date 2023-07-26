@@ -46,7 +46,14 @@ export class CreateAccountComponent {
 
     // this.auth.login(this.f['email'].value, this.f['password'].value);
 
-    this.auth.register(this.f['email'].value, this.f['password'].value);
+    // this.auth.register(this.f['email'].value, this.f['password'].value);
+    this.auth.register(
+      this.f['userName'].value,
+      this.f['email'].value,
+      this.f['password'].value,
+      this.f['firstName'].value,
+      this.f['lastName'].value
+    );
 
     alert('Can Sign Up...');
     // alert(this.f['email'].value + this.f['password'].value);

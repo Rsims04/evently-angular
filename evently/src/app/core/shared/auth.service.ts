@@ -6,13 +6,21 @@ import {
   signOut,
 } from '@angular/fire/auth';
 
+import { Firestore, addDoc } from '@angular/fire/firestore';
+
 import { Router } from '@angular/router';
+import { collection } from '@angular/fire/firestore';
+import { last } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private fireauth: Auth, private router: Router) {}
+  constructor(
+    private fireauth: Auth,
+    private router: Router,
+    private db: Firestore
+  ) {}
 
   // Login Method
   login(email: string, password: string) {
@@ -30,10 +38,25 @@ export class AuthService {
   }
 
   // Register Method
-  register(email: string, password: string) {
+  register(
+    userName: string,
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) {
     createUserWithEmailAndPassword(this.fireauth, email, password).then(
       () => {
         alert('Registration Successful');
+        addDoc(collection(this.db, 'User'), {
+          avatar: '',
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          password: password,
+          username: userName,
+        });
+        alert('User added to database!');
         this.router.navigate(['/sign-in']);
       },
       (err) => {
