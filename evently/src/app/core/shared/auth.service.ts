@@ -3,13 +3,15 @@ import { Auth, authState, createUserWithEmailAndPassword, getAuth, signInWithEma
 import { Router } from '@angular/router';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Observable, from, last } from 'rxjs';
-import { User, UserInfo, onAuthStateChanged } from 'firebase/auth';
+import { User, UserInfo, browserSessionPersistence, onAuthStateChanged, setPersistence } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  // private user: 
   userData: any;
+  loggedIn: boolean;
 
   constructor(
     private auth: Auth,
@@ -24,23 +26,12 @@ export class AuthService {
   }
 
   async getUserData() {
-    // console.log("GET USER DATA...");
-    // const auth = getAuth();
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     const uid = user.uid;
-    //     console.log(user.email,user.uid);
-        
-    //   } else {
-    //     // ...
-    //   }
-    // })
     
   }
 
   // Login Method
   login(params: Login) {
-    
+    setPersistence(this.auth, browserSessionPersistence);
     signInWithEmailAndPassword(this.auth, params.email, params.password)
       .then((userCredential) => {
         // Signed in 
@@ -110,7 +101,7 @@ export class AuthService {
     );
   }
 
-  check() {
+  check(): boolean {
     this.auth.onAuthStateChanged((user) => {
         if (user) {
             // User Signed In
@@ -123,6 +114,7 @@ export class AuthService {
             return false;
         }
     });
+    return false;
   }
 }
 
