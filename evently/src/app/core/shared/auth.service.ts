@@ -24,27 +24,30 @@ export class AuthService {
   }
 
   async getUserData() {
-    console.log("GET USER DATA...");
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        console.log(user.email,user.uid);
-      } else {
-        // ...
-      }
-    })
+    // console.log("GET USER DATA...");
+    // const auth = getAuth();
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     const uid = user.uid;
+    //     console.log(user.email,user.uid);
+        
+    //   } else {
+    //     // ...
+    //   }
+    // })
+    
   }
 
   // Login Method
   login(params: Login) {
+    
     signInWithEmailAndPassword(this.auth, params.email, params.password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user.email);
-        // ...
+        console.log(user.email, user.uid);
         
+        this.router.navigate(['/dashboard']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -63,6 +66,8 @@ export class AuthService {
         console.log(user);
         
         this.writeToDB(params, user);
+
+        this.router.navigate(['/sign-in']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -110,12 +115,12 @@ export class AuthService {
         if (user) {
             // User Signed In
             console.log("User Signed In!!");
-            return user;
+            return true;
         } else {
             // User is signed out
             console.log("User Signed out!!");
             // ...
-            return null;
+            return false;
         }
     });
   }

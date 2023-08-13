@@ -1,0 +1,94 @@
+  .center_text {
+    text-align: center;
+  }
+  
+  /* 
+      Profile Stuff 
+  */
+  
+  .profile_image {
+    max-width: 200px;
+    border-radius: 50%;
+    box-shadow: 0.3em 0.5em 3em rgba(0, 0, 0, 0.07);
+    transition: ease all 0.5s;
+  }
+  
+  .profile_image:hover {
+    box-shadow: 0.3em 0.5em 3em rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: ease all 0.5s;
+  }
+  
+  /* Tooltip container */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* 
+      Tooltip text 
+  */
+  
+  .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    border-radius: 6px;
+  
+    bottom: 95%;
+    left: 40%;
+    margin-left: -60px;
+  
+    opacity: 0;
+    transition: ease all 0.3s;
+  }
+  
+  .img_tooltip {
+    left: 45%;
+  }
+  
+  /* 
+      Tooltip arrow 
+  */
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    bottom: 105%;
+    opacity: 1;
+  }
+  
+  .clickable {
+    cursor: pointer;
+  }
+  
+  /* 
+      RESPONSIVE 
+  */
+  @media only screen and (max-width: 768px) {
+    .main {
+      min-width: 300px;
+      padding-left: 20px;
+      padding-right: 20px;
+      transition: ease all 0.5s;
+    }
+  
+  }
+  
+  

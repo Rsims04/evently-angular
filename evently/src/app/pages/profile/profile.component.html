@@ -17,7 +17,7 @@
       <div class="clickable tooltip">
         <span class="tooltiptext img_tooltip">edit profile image</span>
         <img
-          src="images/placeholder.png"
+          src="{{ userData?.photoURL }}"
           alt="profile image"
           class="profile_image"
           id="u_img"
@@ -29,7 +29,7 @@
     <div class="clickable" id="edit_email" onclick="open_modal('email')">
       <div class="tooltip">
         <span class="tooltiptext">edit email</span>
-        <p id="u_email">My email: {{ userData?.email }}</p>
+        <p id="u_email">{{ userData?.email }}</p>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
     <div class="clickable" id="edit_fname" onclick="open_modal('fname')">
       <div class="tooltip">
         <span class="tooltiptext">edit first name</span>
-        <p id="u_fname">No first name set {{ userData?.firstName }}</p>
+        <p id="u_fname">{{ userData?.firstName }}</p>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
     <div class="clickable" id="edit_lname" onclick="open_modal('lname')">
       <div class="tooltip">
         <span class="tooltiptext">edit last name</span>
-        <p id="u_lname">No last name set {{ userData.lastName}}</p>
+        <p id="u_lname">{{ userData.lastName }}</p>
       </div>
     </div>
 
