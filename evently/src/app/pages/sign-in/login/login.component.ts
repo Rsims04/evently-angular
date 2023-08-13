@@ -31,36 +31,20 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  // onSubmit(): void {
-  //   this.submitted = true;
-  //   this.loading = true;
-
-  //   if (this.form.invalid) {
-  //     console.log('INVALID');
-  //     return;
-  //   }
-
-  //   this.auth.login(this.f['email'].value, this.f['password'].value);
-
-  //   alert('Can Login...');
-  //   alert(this.f['email'].value + this.f['password'].value);
-  //   // this.router.navigateByUrl('dashboard');
-  //   }
-
   login() {
+    this.submitted = true;
     this.loading = true;
+
+    if (this.form.invalid) {
+      console.log('INVALID');
+      return;
+    }
   
     this.auth.login({
       email: this.f['email'].value,
       password: this.f['password'].value
     })
     console.log('click');
-    // .subscribe(() => {
-    //   this.router.navigateByUrl('dashboard');
-    // }, (error: any) => {
-    //   this.loading = false;
-    //   console.log("LOGIN ERROR");
-    // })
   }
 }
 

@@ -1,6 +1,10 @@
   .center_text {
     text-align: center;
   }
+
+  .left {
+    text-align: left;
+  }
   
   /* 
       Profile Stuff 
@@ -23,7 +27,7 @@
   /* Tooltip container */
   .tooltip {
     position: relative;
-    display: inline-block;
+    display: inline;
   }
   
   /* 
@@ -38,26 +42,33 @@
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 5px 10px 5px;
     border-radius: 6px;
   
     bottom: 95%;
-    left: 40%;
-    margin-left: -60px;
+    left: 50%;
+    transform: translate(-50%);
+    // right: 50%;
+    margin-left: -27px;
   
     opacity: 0;
     transition: ease all 0.3s;
   }
   
   .img_tooltip {
-    left: 45%;
+    left: 50%;
+    // transform: translateX(-50%);
   }
   
   /* 
       Tooltip arrow 
   */
   
-  .tooltip .tooltiptext::after {
+  .tooltip::after {
+    left: 50%;
+  }
+  
+  .tooltiptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -70,8 +81,12 @@
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
-    bottom: 105%;
+
+    bottom: 110%;
     opacity: 1;
+    
+    
+    text-align: center;
   }
   
   .clickable {
