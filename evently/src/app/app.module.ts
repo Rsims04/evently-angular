@@ -13,9 +13,13 @@ import { ManageUsersComponent } from './pages/manage-users/manage-users.componen
 import { ProfileComponent } from './pages/profile/profile.component';
 
 import { environment } from 'src/environments/environment';
+// import { AngularFireModule } from '@angular/fire/compat';
+// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+// import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+// import { provideSt }
 import { AuthService } from './core/shared/auth.service';
 import { ModalComponent } from './core/components/modal/modal.component';
 
@@ -38,7 +42,12 @@ import { ModalComponent } from './core/components/modal/modal.component';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    // provideStorage(() => getStorage()),
     provideFirestore(() => getFirestore()),
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireAuthModule,
+    // AngularFirestoreModule,
+
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

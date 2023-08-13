@@ -18,12 +18,12 @@ export class UserSingleComponent implements OnInit {
 
   ngOnInit(): void {
     // Grab the username out of the url
-    this.route.params.subscribe((params) => {
-      const username = params['username'];
-      // Use the userservice to get data from github api
-      this.userService.getUser(username);
-      // .subscribe((user) => (this.user = user));
-      this.user = this.userService.getUser(username);
-    });
+    // this.route.params.subscribe((params) => {
+    //   const username = params['username'];
+    //   // Use the userservice to get data from github api
+    //   this.userService.getUser(username);
+    //   // .subscribe((user) => (this.user = user));
+    //   this.user = this.userService.getUser(username);
+    // });
   }
 }

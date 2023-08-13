@@ -3,9 +3,9 @@
 <form [formGroup]="form" (ngSubmit)="onSignUp()">
   <div class="logindetails">
     <label>Username: </label><br />
-    <input type="text" formControlName="userName" required />
+    <input type="text" formControlName="displayName" required />
     <br /><br />
-    <div class="is-error" *ngIf="submitted && f['userName'].errors">
+    <div class="is-error" *ngIf="submitted && f['displayName'].errors">
       *A Username Is Required and Must Be Valid.
     </div>
   </div>
