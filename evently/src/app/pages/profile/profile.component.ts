@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { ProfileDialogComponent, ProfileDialogResult } from './profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +12,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 })
 export class ProfileComponent implements OnInit  {
   constructor(
-    private db: Firestore
+    private db: Firestore,
+    private dialog: MatDialog
     ){}
 
   user: User = {} as User;
@@ -41,5 +44,27 @@ export class ProfileComponent implements OnInit  {
       console.log("ok");
     }
   } 
+
+  editDetail(field: string, fieldName: string): void {
+    const dialogRef = this.dialog.open(ProfileDialogComponent, {
+      panelClass: 'custom-dialog-class',
+      data: {
+        field,
+        fieldName
+      },
+    });
+    // DB stuff
+    // ...
+    // dialogRef.afterClosed().subscribe((result: TaskDialogResult|undefined) => {
+    //   if (!result) {
+    //     return;
+    //   }
+    //   if (result.delete) {
+    //     // this.store.collection(list).doc(task.id).delete();
+    //   } else {
+    //     this.store.collection(list).doc(task.id).update(task);
+    //   }
+    // });
+  }
 }
 

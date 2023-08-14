@@ -63,17 +63,13 @@
       -ms-transform: translateY(10px);
       -o-transform: translateY(10px);
         transform: translateY(10px);
-    -webkit-transition: all .25s ease-out;
-      -moz-transition: all .25s ease-out;
-      -ms-transition: all .25s ease-out;
-      -o-transition: all .25s ease-out;
-        transition: all .25s ease-out;
     -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
       -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
       -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
       -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
         box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
 
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .tooltip-wrapper .tooltip:before {
@@ -108,6 +104,8 @@
       -ms-transform: translateY(0px);
        -o-transform: translateY(0px);
         transform: translateY(0px);
+
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
   // .wrapper .tooltip:before {

@@ -21,7 +21,8 @@ import { AuthService } from './core/shared/auth.service';
 
 import { ModalComponent } from './core/components/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ManageUsersComponent,
     ProfileComponent,
     ModalComponent,
+    ProfileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatDialogModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

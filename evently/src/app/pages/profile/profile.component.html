@@ -3,7 +3,7 @@
   <div class="container main center_text" id="edit_profile">
     <div class="left">
       <p>Edit Profile</p>
-      <div class="tooltip-wrapper clickable" id="edit_uname" onclick="open_modal('uname')">
+      <div class="tooltip-wrapper clickable" id="edit_uname" (click)="editDetail('userName','Username')">
         <h1 id="userName">{{ userData?.displayName }}</h1>
         <div class="tooltip top">
           Edit Username
@@ -24,7 +24,7 @@
     </div>
 
     <h2>Email</h2>
-    <div class="tooltip-wrapper clickable" id="edit_email" onclick="open_modal('email')">
+    <div class="tooltip-wrapper clickable" id="edit_email" (click)="editDetail('email','Email')">
       <p id="u_email">{{ userData?.email }}</p>
       
       <div class="tooltip top">
@@ -34,7 +34,7 @@
     </div>
 
     <h2>First Name</h2>
-    <div class="tooltip-wrapper clickable" id="edit_fname" onclick="open_modal('fname')">
+    <div class="tooltip-wrapper clickable" id="edit_fname" (click)="editDetail('firstName','First Name')">
       <p id="u_fname">{{ userData?.firstName }}</p>
         <span class="tooltip top">
           Edit First Name
@@ -43,7 +43,7 @@
     </div>
 
     <h2>Last Name</h2>
-    <div class="tooltip-wrapper clickable" id="edit_lname" onclick="open_modal('lname')">
+    <div class="tooltip-wrapper clickable" id="edit_lname" (click)="editDetail('lastName','Last Name')">
       <p id="u_lname">{{ userData.lastName }}</p>
       
         <span class="tooltip top">
@@ -55,93 +55,7 @@
     <br />
     <br />
 
-    <!-- Modal - forms --->
-    <div id="details_modal" class="modal">
-      <div class="modal-content container">
-        <span class="close">&times;</span>
-        <!-- Change Username -->
-        <div id="form_uname" style="display: none">
-          <h1>Edit Username</h1>
-          <br />
-          <form onsubmit="return false;">
-            <div class="logindetails">
-              <label for="uname">New Username: </label><br />
-              <input type="text" id="uname" name="uname" /> <br /><br />
-            </div>
-            <button class="submit" onclick="change_username();">Confirm</button>
-          </form>
-        </div>
-
-        <!-- Change Image -->
-        <div id="form_image" style="display: none">
-          <h1>Edit Profile Image</h1>
-          <br />
-          <!-- <form onsubmit="return false;" method="POST" action="/profile" enctype="multipart/form-data"> -->
-          <form
-            id="imageForm"
-            method="POST"
-            action="/profile"
-            enctype="multipart/form-data"
-          >
-            <!-- <div class="logindetails"> -->
-            <label for="image">Upload Image: </label><br />
-            <input type="file" id="image" name="image" /> <br /><br />
-            <!-- <input type="submit"> -->
-            <!-- </div> -->
-            <button
-              type="submit"
-              class="submit"
-              form="imageForm"
-              value="Submit"
-            >
-              Confirm
-            </button>
-            <!-- <button class="submit">Confirm</button> -->
-          </form>
-        </div>
-
-        <!-- Change Email -->
-        <div id="form_email" style="display: none">
-          <h1>Edit Email</h1>
-          <br />
-          <form onsubmit="return false;">
-            <div class="logindetails">
-              <label for="email">New Email: </label><br />
-              <input type="text" id="email" name="email" /> <br /><br />
-            </div>
-            <button class="submit" onclick="change_email();">Confirm</button>
-          </form>
-        </div>
-
-        <!-- Change Firstname -->
-        <div id="form_fname" style="display: none">
-          <h1>Edit First Name</h1>
-          <br />
-          <form onsubmit="return false;">
-            <div class="logindetails">
-              <label for="first">New First Name: </label><br />
-              <input type="text" id="first" name="first" /> <br /><br />
-            </div>
-            <button class="submit" onclick="change_firstname();">
-              Confirm
-            </button>
-          </form>
-        </div>
-
-        <!-- Change Lastname -->
-        <div id="form_lname" style="display: none">
-          <h1>Edit Last Name</h1>
-          <br />
-          <form onsubmit="return false;">
-            <div class="logindetails">
-              <label for="last">New Last Name: </label><br />
-              <input type="text" id="last" name="last" /> <br /><br />
-            </div>
-            <button class="submit" onclick="change_lastname();">Confirm</button>
-          </form>
-        </div>
-      </div>
-    </div>
+    
 
     <hr class="rounded" />
   </div>
