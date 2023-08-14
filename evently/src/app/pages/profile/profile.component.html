@@ -3,7 +3,7 @@
   <div class="container main center_text" id="edit_profile">
     <div class="left">
       <p>Edit Profile</p>
-      <div class="tooltip-wrapper clickable" id="edit_uname" (click)="editDetail('userName','Username')">
+      <div class="tooltip-wrapper clickable" id="edit_uname" (click)="editDetail('displayName','Username')">
         <h1 id="userName">{{ userData?.displayName }}</h1>
         <div class="tooltip top">
           Edit Username
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="tooltip-wrapper clickable" id="edit_img" onclick="open_modal('image')">
+    <div class="tooltip-wrapper clickable" id="edit_img" (click)="editDetail('photoURL', 'Profile Image')">
       <div class="tooltip top">
         Edit Profile Image
       </div>

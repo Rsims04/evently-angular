@@ -10,6 +10,15 @@
         *A Valid Username Is Required.
       </div>
     </div>
+
+    <div class="logindetails">
+      <label>Email: </label><br />
+      <input type="text" formControlName="email" required />
+      <br /><br />
+      <div class="is-error" *ngIf="submitted && f['email'].errors">
+        *A Valid Email Is Required.
+      </div>
+    </div>
   
     <div class="logindetails">
       <label>First Name: </label><br />
@@ -26,15 +35,6 @@
       <br /><br />
       <div class="is-error" *ngIf="submitted && f['lastName'].errors">
         *Your Last Name Is Required.
-      </div>
-    </div>
-  
-    <div class="logindetails">
-      <label>Email: </label><br />
-      <input type="text" formControlName="email" required />
-      <br /><br />
-      <div class="is-error" *ngIf="submitted && f['email'].errors">
-        *A Valid Email Is Required.
       </div>
     </div>
   

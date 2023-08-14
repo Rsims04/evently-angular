@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 import { ProfileDialogComponent, ProfileDialogResult } from './profile-dialog/profile-dialog.component';
 
 @Component({
@@ -33,11 +33,16 @@ export class ProfileComponent implements OnInit  {
 
   async getCurrentUserData() {
     if (this.user !== null) {
-      console.log(this.user.uid);
-      const q = query(collection(this.db, 'User'), where('uid', '==', this.user.uid));
       
-      const querySnapshot = await getDocs(q);
-      this.userData = querySnapshot.docs[0].data();
+          console.log(this.user.uid);
+          const q = query(collection(this.db, 'User'), where('uid', '==', this.user.uid));
+          
+          const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+            await getDocs(q);
+            this.userData = querySnapshot.docs[0].data();
+          });
+          // ...
+        
   
       console.log(this.userData);
     } else {
