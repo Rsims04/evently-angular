@@ -1,4 +1,3 @@
-import { Conditional } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,24 +15,25 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      // username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
-  // Getter for easy access to form fields
+  // Getter for easy access to form fields.
   get f() {
     return this.form.controls;
   }
 
-  onSubmit(): void {
+  /**
+   * Authenticates and logs in user
+   */
+  login() {
     this.submitted = true;
     this.loading = true;
 
@@ -41,11 +41,12 @@ export class LoginComponent implements OnInit {
       console.log('INVALID');
       return;
     }
-
-    this.auth.login(this.f['email'].value, this.f['password'].value);
-
-    alert('Can Login...');
-    alert(this.f['email'].value + this.f['password'].value);
-    // this.router.navigateByUrl('dashboard');
+  
+    this.auth.login({
+      email: this.f['email'].value,
+      password: this.f['password'].value
+    })
+    console.log('click');
   }
 }
+

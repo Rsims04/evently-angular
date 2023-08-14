@@ -1,10 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="login()">
   <div class="logindetails">
     <label>Email: </label><br />
     <input type="text" formControlName="email" required />
     <br /><br />
     <div class="is-error" *ngIf="submitted && f['email'].errors">
-      *Your Email Is Required and Must Be Valid.
+      *Your Valid Email Is Required.
     </div>
   </div>
   <div class="logindetails">

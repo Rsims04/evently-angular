@@ -16,9 +16,13 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { AuthService } from './core/shared/auth.service';
-import { ModalComponent } from './core/components/modal/modal.component';
 
+import { AuthService } from './core/shared/auth.service';
+
+import { ModalComponent } from './core/components/modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,7 @@ import { ModalComponent } from './core/components/modal/modal.component';
     ManageUsersComponent,
     ProfileComponent,
     ModalComponent,
+    ProfileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,8 @@ import { ModalComponent } from './core/components/modal/modal.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

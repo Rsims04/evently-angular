@@ -21,7 +21,7 @@ export class CreateAccountComponent {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      userName: ['', Validators.required],
+      displayName: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
@@ -35,6 +35,9 @@ export class CreateAccountComponent {
     return this.form.controls;
   }
 
+  /**
+   * Registers new user and stores user data in database.
+   */
   onSignUp(): void {
     this.submitted = true;
     this.loading = true;
@@ -44,19 +47,16 @@ export class CreateAccountComponent {
       return;
     }
 
-    // this.auth.login(this.f['email'].value, this.f['password'].value);
-
-    // this.auth.register(this.f['email'].value, this.f['password'].value);
-    this.auth.register(
-      this.f['userName'].value,
-      this.f['email'].value,
-      this.f['password'].value,
-      this.f['firstName'].value,
-      this.f['lastName'].value
+    this.auth.register({
+        displayName: this.f['displayName'].value,
+        email: this.f['email'].value,
+        password: this.f['password'].value,
+        firstName: this.f['firstName'].value,
+        lastName: this.f['lastName'].value
+      }
     );
 
-    alert('Can Sign Up...');
-    // alert(this.f['email'].value + this.f['password'].value);
-    // this.router.navigateByUrl('dashboard');
+    alert('Signed Up...' + this.f['displayName'].value);
+    this.router.navigateByUrl('sign-in');
   }
 }

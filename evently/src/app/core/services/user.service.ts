@@ -1,58 +1,64 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModule } from 'src/app/user/user.module';
-import { User } from '../models/user.model';
+import { User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { AuthService } from '../shared/auth.service';
+import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  // apiUrl = 'https://api.github.com/users';
+  user$: Observable<User>;
 
-  apiUrl: User[] = [
-    {
-      id: '1',
-      username: 'John',
-      password: '1234',
-      firstName: 'John',
-      lastName: 'Smith',
-      avatar: '/link',
-      token: 'abcd',
-    },
-    {
-      id: '2',
-      username: 'Alice',
-      password: '1234',
-      firstName: 'Alice',
-      lastName: 'Dawson',
-      avatar: '/link',
-      token: 'abcd',
-    },
-    {
-      id: '3',
-      username: 'Bob',
-      password: '1234',
-      firstName: 'Bob',
-      lastName: 'Reynolds',
-      avatar: '/link',
-      token: 'abcd',
-    },
-  ];
+  constructor(
+    private auth: AuthService,
+    private db: Firestore
+    ) {}
 
-  constructor(private http: HttpClient) {}
-
+  /**
+   * Gets a list of all user.
+   */
   getUsers() {
-    // return this.http.get(`${this.apiUrl}`);
-    console.log(this.apiUrl);
-    return this.apiUrl;
+    // ...
   }
 
-  getUser(username: string) {
-    console.log(this.apiUrl);
-    console.log(username);
-    // return this.http.get(`users/${username}`);
-    let g = this.apiUrl.filter((res) => res.username?.indexOf(username) !== -1);
-    console.log(g);
-    return g[0];
+  /**
+   * Gets the current user.
+   */
+  getCurrentUser(): User | null {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("return user: ", user.uid)
+          return user;
+        } else {
+          // ...
+          return null;
+        }
+      });
+      return null;
+    }
+
+    /**
+     * Gets current users data from database.
+     */
+    async getCurrentUserData() {
+      const auth = getAuth();
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          console.log(user.uid);
+          const q = query(collection(this.db, 'User'), where('uid', '==', user.uid));
+          
+          const querySnapshot = await getDocs(q);
+          console.log("return data: ", querySnapshot.docs[0].data());
+          return querySnapshot.docs[0].data();
+      
+        } else {
+          console.log("User Data null...");
+          return null;
+        }
+      });
+      return null;
+    }
   }
-}
