@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/core/models/user.model';
+import { appUser } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./user-single.component.scss'],
 })
 export class UserSingleComponent implements OnInit {
-  user!: User | null;
+  user!: appUser | null;
 
   constructor(
     private userService: UserService,

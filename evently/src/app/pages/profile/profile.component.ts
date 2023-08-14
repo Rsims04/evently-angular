@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { Observable } from 'rxjs';
-// import { Auth } from '@angular/fire/auth';
-import { UserService } from 'src/app/core/services/user.service';
-import { AuthService } from 'src/app/core/shared/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,19 +10,15 @@ import { AuthService } from 'src/app/core/shared/auth.service';
 })
 export class ProfileComponent implements OnInit  {
   constructor(
-    private userService: UserService,
-    private auth: AuthService,
     private db: Firestore
-    ){
-      
-    }
+    ){}
 
-  user: any = {};
+  user: User = {} as User;
   userData: any = {};
 
   ngOnInit(): void {
-      const auth1 = getAuth();
-      onAuthStateChanged(auth1, (user) => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user = user;
           this.getCurrentUserData();

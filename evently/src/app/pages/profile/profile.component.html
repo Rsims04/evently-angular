@@ -3,48 +3,53 @@
   <div class="container main center_text" id="edit_profile">
     <div class="left">
       <p>Edit Profile</p>
-      <div class="clickable" id="edit_uname" onclick="open_modal('uname')">
-        <div class="tooltip">
-          <span class="tooltiptext">edit username</span>
-          <h1 id="u_uname">{{ userData?.displayName }}</h1>
+      <div class="tooltip-wrapper clickable" id="edit_uname" onclick="open_modal('uname')">
+        <h1 id="userName">{{ userData?.displayName }}</h1>
+        <div class="tooltip top">
+          Edit Username
         </div>
       </div>
     </div>
 
-    <div id="clickable" id="edit_img" onclick="open_modal('image')">
-      <div class="clickable tooltip">
-        <span class="tooltiptext img_tooltip">edit profile image</span>
-        <img
-          src="{{ userData?.photoURL }}"
-          alt="profile image"
-          class="profile_image"
-          id="u_img"
-        />
+    <div class="tooltip-wrapper clickable" id="edit_img" onclick="open_modal('image')">
+      <div class="tooltip top">
+        Edit Profile Image
       </div>
+      <img
+      src="{{ userData?.photoURL }}"
+      alt="profile image"
+      class="profile_image"
+      id="u_img"
+      />
     </div>
 
     <h2>Email</h2>
-    <div class="clickable" id="edit_email" onclick="open_modal('email')">
-      <div class="tooltip">
-        <span class="tooltiptext">edit email</span>
-        <p id="u_email">{{ userData?.email }}</p>
+    <div class="tooltip-wrapper clickable" id="edit_email" onclick="open_modal('email')">
+      <p id="u_email">{{ userData?.email }}</p>
+      
+      <div class="tooltip top">
+        Edit Email
       </div>
+      
     </div>
 
     <h2>First Name</h2>
-    <div class="clickable" id="edit_fname" onclick="open_modal('fname')">
-      <div class="tooltip">
-        <span class="tooltiptext">edit first name</span>
-        <p id="u_fname">{{ userData?.firstName }}</p>
-      </div>
+    <div class="tooltip-wrapper clickable" id="edit_fname" onclick="open_modal('fname')">
+      <p id="u_fname">{{ userData?.firstName }}</p>
+        <span class="tooltip top">
+          Edit First Name
+        </span>
+     
     </div>
 
     <h2>Last Name</h2>
-    <div class="clickable" id="edit_lname" onclick="open_modal('lname')">
-      <div class="tooltip">
-        <span class="tooltiptext">edit last name</span>
-        <p id="u_lname">{{ userData.lastName }}</p>
-      </div>
+    <div class="tooltip-wrapper clickable" id="edit_lname" onclick="open_modal('lname')">
+      <p id="u_lname">{{ userData.lastName }}</p>
+      
+        <span class="tooltip top">
+          Edit Last Name
+        </span>
+      
     </div>
 
     <br />
