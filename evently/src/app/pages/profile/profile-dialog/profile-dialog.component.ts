@@ -22,10 +22,19 @@ export class ProfileDialogComponent {
     private db: Firestore
   ) {}
 
+  /**
+   * Closes modal.
+   */
   cancel(): void {
     this.dialogRef.close(this.data);
   }
 
+  /**
+   * Changes user details on auth and database.
+   * To user input.
+   * 
+   * TODO: validate email and check username (duplicates).
+   */
   async changeDetail(detail: string) {
     console.log("Changing:",this.field , "to", detail);
     const auth = getAuth();
@@ -37,10 +46,8 @@ export class ProfileDialogComponent {
         updateEmail(user, detail).then(() => {
           // Email updated!
           console.log('email updated to:',detail);
-          // ...
         }).catch((error) => {
           // An error occurred
-          // ...
           console.log('Error changing email: ',error.message);
         });
       }

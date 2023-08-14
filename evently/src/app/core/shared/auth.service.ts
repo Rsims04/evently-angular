@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { Observable, from, last } from 'rxjs';
-import { User, UserInfo, browserSessionPersistence, onAuthStateChanged, setPersistence } from 'firebase/auth';
+import { User, browserSessionPersistence, setPersistence } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // private user: 
   userData: any;
   loggedIn: boolean;
 
@@ -21,6 +19,9 @@ export class AuthService {
     
   }
 
+  /**
+   * Gets the current user.
+   */
   getUser() {
     return this.auth.currentUser;
   }
@@ -29,7 +30,11 @@ export class AuthService {
     
   }
 
-  // Login Method
+  /**
+   * Autheniticate user.
+   * On success: navigate to dashboard.
+   * On failure: catch error, do nothing.
+   */
   login(params: Login) {
     setPersistence(this.auth, browserSessionPersistence);
     signInWithEmailAndPassword(this.auth, params.email, params.password)
@@ -46,7 +51,11 @@ export class AuthService {
       });
   }
 
-  // Register Method
+  /**
+   * Registers user in auth and database.
+   * On success: navigate to login page.
+   * On failure: catch error, do nothing.
+   */
   register(
     params: Register
   ) {
@@ -67,6 +76,9 @@ export class AuthService {
       });
   }
 
+  /**
+   * Writes user data to database.
+   */
   async writeToDB(params: Register, user: User) {
     try {
       const docRef = await addDoc(collection(this.db, "User"), {
@@ -88,7 +100,9 @@ export class AuthService {
     
   }
 
-  // Sign Out
+  /**
+   * Log out user.
+   */
   logout() {
     this.auth.signOut().then(
       () => {
@@ -101,6 +115,9 @@ export class AuthService {
     );
   }
 
+  /**
+   * Checks users current state.
+   */
   check(): boolean {
     this.auth.onAuthStateChanged((user) => {
         if (user) {

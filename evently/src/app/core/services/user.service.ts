@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModule } from 'src/app/user/user.module';
-import { Auth, User, UserInfo, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { User, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { AuthService } from '../shared/auth.service';
 import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { appUser } from '../models/user.model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +16,16 @@ export class UserService {
     private db: Firestore
     ) {}
 
+  /**
+   * Gets a list of all user.
+   */
   getUsers() {
     // ...
   }
 
+  /**
+   * Gets the current user.
+   */
   getCurrentUser(): User | null {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
@@ -36,6 +40,9 @@ export class UserService {
       return null;
     }
 
+    /**
+     * Gets current users data from database.
+     */
     async getCurrentUserData() {
       const auth = getAuth();
       onAuthStateChanged(auth, async (user) => {

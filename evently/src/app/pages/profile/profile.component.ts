@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import { collection, doc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 import { ProfileDialogComponent, ProfileDialogResult } from './profile-dialog/profile-dialog.component';
 
 @Component({
@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit  {
   userData: any = {};
 
   ngOnInit(): void {
+      // Check if user is logged in and grab current user.
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -31,25 +32,26 @@ export class ProfileComponent implements OnInit  {
       });
   }
 
+  /**
+   * Gets the current users information.
+   */
   async getCurrentUserData() {
     if (this.user !== null) {
-      
           console.log(this.user.uid);
           const q = query(collection(this.db, 'User'), where('uid', '==', this.user.uid));
-          
           const unsubscribe = onSnapshot(q, async (querySnapshot) => {
             await getDocs(q);
             this.userData = querySnapshot.docs[0].data();
           });
-          // ...
-        
-  
       console.log(this.userData);
     } else {
       console.log("ok");
     }
   } 
 
+  /**
+   * Opens modal and sends correct field information.
+   */
   editDetail(field: string, fieldName: string): void {
     const dialogRef = this.dialog.open(ProfileDialogComponent, {
       panelClass: 'custom-dialog-class',
@@ -58,18 +60,6 @@ export class ProfileComponent implements OnInit  {
         fieldName
       },
     });
-    // DB stuff
-    // ...
-    // dialogRef.afterClosed().subscribe((result: TaskDialogResult|undefined) => {
-    //   if (!result) {
-    //     return;
-    //   }
-    //   if (result.delete) {
-    //     // this.store.collection(list).doc(task.id).delete();
-    //   } else {
-    //     this.store.collection(list).doc(task.id).update(task);
-    //   }
-    // });
   }
 }
 

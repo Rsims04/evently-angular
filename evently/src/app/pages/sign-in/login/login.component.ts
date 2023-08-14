@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
@@ -26,11 +25,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Getter for easy access to form fields
+  // Getter for easy access to form fields.
   get f() {
     return this.form.controls;
   }
 
+  /**
+   * Authenticates and logs in user
+   */
   login() {
     this.submitted = true;
     this.loading = true;

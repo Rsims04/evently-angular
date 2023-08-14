@@ -35,6 +35,9 @@ export class CreateAccountComponent {
     return this.form.controls;
   }
 
+  /**
+   * Registers new user and stores user data in database.
+   */
   onSignUp(): void {
     this.submitted = true;
     this.loading = true;
