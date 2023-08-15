@@ -9,10 +9,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import {
-  ProfileDialogComponent,
-  ProfileDialogResult,
-} from './profile-dialog/profile-dialog.component';
+import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +17,7 @@ import {
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(
-    private db: Firestore,
-    private dialog: MatDialog,
-  ) {}
+  constructor(private db: Firestore, private dialog: MatDialog) {}
 
   user: User = {} as User;
   userData: any = {};
@@ -36,7 +30,7 @@ export class ProfileComponent implements OnInit {
         this.user = user;
         this.getCurrentUserData();
       } else {
-        // ...
+        console.log('Error: user is null...');
       }
     });
   }
@@ -49,7 +43,7 @@ export class ProfileComponent implements OnInit {
       console.log(this.user.uid);
       const q = query(
         collection(this.db, 'User'),
-        where('uid', '==', this.user.uid),
+        where('uid', '==', this.user.uid)
       );
       const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         await getDocs(q);
@@ -57,7 +51,7 @@ export class ProfileComponent implements OnInit {
       });
       console.log(this.userData);
     } else {
-      console.log('ok');
+      console.log('Error: user is null...');
     }
   }
 
