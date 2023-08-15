@@ -3,59 +3,64 @@
   <div class="container main center_text" id="edit_profile">
     <div class="left">
       <p>Edit Profile</p>
-      <div class="tooltip-wrapper clickable" id="edit_uname" (click)="editDetail('displayName','Username')">
+      <div
+        class="tooltip-wrapper clickable"
+        id="edit_uname"
+        (click)="editDetail('displayName', 'Username')"
+      >
         <h1 id="userName">{{ userData?.displayName }}</h1>
-        <div class="tooltip top">
-          Edit Username
-        </div>
+        <div class="tooltip top">Edit Username</div>
       </div>
     </div>
 
-    <div class="tooltip-wrapper clickable" id="edit_img" (click)="editDetail('photoURL', 'Profile Image')">
-      <div class="tooltip top">
-        Edit Profile Image
-      </div>
+    <div
+      class="tooltip-wrapper clickable"
+      id="edit_img"
+      (click)="editDetail('photoURL', 'Profile Image')"
+    >
+      <div class="tooltip top">Edit Profile Image</div>
       <img
-      src="{{ userData?.photoURL }}"
-      alt="profile image"
-      class="profile_image"
-      id="u_img"
+        src="{{ userData?.photoURL }}"
+        alt="profile image"
+        class="profile_image"
+        id="u_img"
       />
     </div>
 
     <h2>Email</h2>
-    <div class="tooltip-wrapper clickable" id="edit_email" (click)="editDetail('email','Email')">
+    <div
+      class="tooltip-wrapper clickable"
+      id="edit_email"
+      (click)="editDetail('email', 'Email')"
+    >
       <p id="u_email">{{ userData?.email }}</p>
-      
-      <div class="tooltip top">
-        Edit Email
-      </div>
-      
+
+      <div class="tooltip top">Edit Email</div>
     </div>
 
     <h2>First Name</h2>
-    <div class="tooltip-wrapper clickable" id="edit_fname" (click)="editDetail('firstName','First Name')">
+    <div
+      class="tooltip-wrapper clickable"
+      id="edit_fname"
+      (click)="editDetail('firstName', 'First Name')"
+    >
       <p id="u_fname">{{ userData?.firstName }}</p>
-        <span class="tooltip top">
-          Edit First Name
-        </span>
-     
+      <span class="tooltip top"> Edit First Name </span>
     </div>
 
     <h2>Last Name</h2>
-    <div class="tooltip-wrapper clickable" id="edit_lname" (click)="editDetail('lastName','Last Name')">
+    <div
+      class="tooltip-wrapper clickable"
+      id="edit_lname"
+      (click)="editDetail('lastName', 'Last Name')"
+    >
       <p id="u_lname">{{ userData.lastName }}</p>
-      
-        <span class="tooltip top">
-          Edit Last Name
-        </span>
-      
+
+      <span class="tooltip top"> Edit Last Name </span>
     </div>
 
     <br />
     <br />
-
-    
 
     <hr class="rounded" />
   </div>

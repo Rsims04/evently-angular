@@ -16,7 +16,7 @@ export class CreateAccountComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -48,13 +48,12 @@ export class CreateAccountComponent {
     }
 
     this.auth.register({
-        displayName: this.f['displayName'].value,
-        email: this.f['email'].value,
-        password: this.f['password'].value,
-        firstName: this.f['firstName'].value,
-        lastName: this.f['lastName'].value
-      }
-    );
+      displayName: this.f['displayName'].value,
+      email: this.f['email'].value,
+      password: this.f['password'].value,
+      firstName: this.f['firstName'].value,
+      lastName: this.f['lastName'].value,
+    });
 
     alert('Signed Up...' + this.f['displayName'].value);
     this.router.navigateByUrl('sign-in');

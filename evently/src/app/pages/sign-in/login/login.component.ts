@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -41,12 +41,11 @@ export class LoginComponent implements OnInit {
       console.log('INVALID');
       return;
     }
-  
+
     this.auth.login({
       email: this.f['email'].value,
-      password: this.f['password'].value
-    })
+      password: this.f['password'].value,
+    });
     console.log('click');
   }
 }
-

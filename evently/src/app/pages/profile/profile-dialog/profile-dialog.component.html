@@ -1,12 +1,10 @@
 <div *ngIf="!(data.field == 'photoURL'); else isPhoto">
-    <h1>Edit {{ data.fieldName }}</h1>
-    <br />
-    <div>
-        <label for="detail">New {{ data.fieldName }}: </label><br />
-        <input type="text" id="detail" name="detail" #detail/> <br /><br />
-    </div>
-    <button class="submit" (click)="changeDetail(detail.value)">Confirm</button>
+  <h1>Edit {{ data.fieldName }}</h1>
+  <br />
+  <div>
+    <label for="detail">New {{ data.fieldName }}: </label><br />
+    <input type="text" id="detail" name="detail" #detail /> <br /><br />
+  </div>
+  <button class="submit" (click)="changeDetail(detail.value)">Confirm</button>
 </div>
-<ng-template #isPhoto>
-    PHOTO UPLOAD
-</ng-template>
+<ng-template #isPhoto> PHOTO UPLOAD </ng-template>
