@@ -1,11 +1,8 @@
-import { DialogModule } from '@angular/cdk/dialog';
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import {
   Firestore,
   collection,
-  doc,
   getDocs,
-  onSnapshot,
   query,
   updateDoc,
   where,

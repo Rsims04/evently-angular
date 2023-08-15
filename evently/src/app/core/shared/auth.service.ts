@@ -18,7 +18,7 @@ export class AuthService {
   constructor(
     private auth: Auth,
     private router: Router,
-    private db: Firestore,
+    private db: Firestore
   ) {}
 
   /**
@@ -106,7 +106,7 @@ export class AuthService {
       },
       (err) => {
         alert(err.message);
-      },
+      }
     );
   }
 
