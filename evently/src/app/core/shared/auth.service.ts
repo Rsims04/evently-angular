@@ -7,6 +7,7 @@ import {
 import { Router } from '@angular/router';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { User, browserSessionPersistence, setPersistence } from 'firebase/auth';
+import { Observable, catchError, from, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ import { User, browserSessionPersistence, setPersistence } from 'firebase/auth';
 export class AuthService {
   userData: any;
   loggedIn: boolean;
+  user = Observable<User>;
 
   constructor(
     private auth: Auth,
@@ -35,20 +37,18 @@ export class AuthService {
    * On success: navigate to dashboard.
    * On failure: catch error, do nothing.
    */
-  login(params: Login) {
-    setPersistence(this.auth, browserSessionPersistence);
-    signInWithEmailAndPassword(this.auth, params.email, params.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user.email, user.uid);
-
-        this.router.navigate(['/dashboard']);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  login(params: Login): Promise<Observable<any>> {
+    return new Promise<any>((resolve, reject) => {
+      signInWithEmailAndPassword(this.auth, params.email, params.password).then(
+        (res) => {
+          resolve(res);
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
   /**
@@ -56,22 +56,37 @@ export class AuthService {
    * On success: navigate to login page.
    * On failure: catch error, do nothing.
    */
-  register(params: Register) {
-    createUserWithEmailAndPassword(this.auth, params.email, params.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
+  register(params: Register): Promise<Observable<any>> {
+    return new Promise<any>((resolve, reject) => {
+      createUserWithEmailAndPassword(
+        this.auth,
+        params.email,
+        params.password
+      ).then(
+        (res) => {
+          const user = res.user;
+          this.writeToDB(params, user);
+          resolve(res);
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
 
-        this.writeToDB(params, user);
+    // .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     this.writeToDB(params, user);
 
-        this.router.navigate(['/sign-in']);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    //     this.router.navigate(['/sign-in']);
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // ..
+    //   });
   }
 
   /**

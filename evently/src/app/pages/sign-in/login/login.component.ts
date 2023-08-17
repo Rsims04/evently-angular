@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/shared/auth.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +41,26 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     if (this.form.invalid) {
+      this.loading = false;
       console.log('INVALID');
       return;
     }
 
-    this.auth.login({
-      email: this.f['email'].value,
-      password: this.f['password'].value,
-    });
-    console.log('click');
+    this.auth
+      .login({
+        email: this.f['email'].value,
+        password: this.f['password'].value,
+      })
+      .then(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/dashboard']);
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+          alert('Failed to log in, Please try again ..');
+        }
+      );
   }
 }
