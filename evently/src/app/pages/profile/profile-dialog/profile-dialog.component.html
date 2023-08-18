@@ -5,6 +5,15 @@
     <label for="detail">New {{ data.fieldName }}: </label><br />
     <input type="text" id="detail" name="detail" #detail /> <br /><br />
   </div>
-  <button class="submit" (click)="changeDetail(detail.value)">Confirm</button>
+
+  <div *ngIf="loading == false; else currentlyLoading">
+    <button class="submit" (click)="changeDetail(detail.value)">Confirm</button>
+  </div>
+
+  <ng-template #currentlyLoading>
+    <button class="create_account_button loadingButton">
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    </button>
+  </ng-template>
 </div>
 <ng-template #isPhoto> PHOTO UPLOAD </ng-template>

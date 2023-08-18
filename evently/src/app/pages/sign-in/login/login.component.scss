@@ -14,6 +14,19 @@
   padding: 1em;
 }
 
+.loadingButton {
+  float: right;
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}
+
+:host ::ng-deep .mdc-circular-progress__indeterminate-container circle,
+.mdc-circular-progress__circle-clipper circle {
+  stroke: #6d4199 !important;
+}
+
 /*
   RESPONSIVE
 */

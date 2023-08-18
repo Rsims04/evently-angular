@@ -20,11 +20,12 @@ export class ProfileDialogComponent {
   field: string = this.data.field;
   fieldName: string = this.data.fieldName;
   detail: string;
+  loading: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ProfileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProfileDialogData,
-    private db: Firestore,
+    private db: Firestore
   ) {}
 
   /**
@@ -41,6 +42,8 @@ export class ProfileDialogComponent {
    * TODO: validate email and check username (duplicates).
    */
   async changeDetail(detail: string) {
+    this.loading = true;
+
     console.log('Changing:', this.field, 'to', detail);
     const auth = getAuth();
     const user = auth.currentUser;
@@ -55,13 +58,14 @@ export class ProfileDialogComponent {
           })
           .catch((error) => {
             // An error occurred
+            this.loading = false;
             console.log('Error changing email: ', error.message);
           });
       }
 
       const q = query(
         collection(this.db, 'User'),
-        where('uid', '==', user.uid),
+        where('uid', '==', user.uid)
       );
 
       const querySnapshot = await getDocs(q);
@@ -71,10 +75,12 @@ export class ProfileDialogComponent {
       await updateDoc(docRef, {
         [this.field]: detail,
       });
+      this.loading = false;
       console.log('Changed:', this.field, 'to', detail);
 
       this.dialogRef.close(this.data);
     } else {
+      this.loading = false;
       console.log('Failed:', this.field, 'to', detail);
     }
   }
