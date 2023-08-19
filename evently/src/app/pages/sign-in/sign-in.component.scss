@@ -1,8 +1,3 @@
-.center {
-  display: flex;
-  justify-content: center;
-}
-
 .center_logo {
   display: block;
   margin-left: auto;
@@ -23,63 +18,22 @@
   transition: ease all 0.5s;
 }
 
+.form-container {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 .logInPage {
   text-align: center;
   margin-top: 3em;
 }
 
-.logindetails {
-  margin: 0 auto;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  text-align: left;
-  width: 230px;
-}
-
-// /*
-//   INPUTS
-// */
-
-// input {
-//   border: none;
-//   border-bottom: 2px solid #6d4199;
-//   padding: 5px 20px 5px 20px;
-//   background-color: transparent;
-// }
-
-// input:focus {
-//   outline: none;
-//   border-bottom: 2px solid #8011e2;
-// }
-
-// /*
-//   BUTTONS
-// */
-
-// button {
-//   margin: 0 auto;
-//   background-color: #6d4199;
-//   color: white;
-//   border: 2px solid #6d4199;
-//   padding: 12px 50px 12px 50px;
-//   text-align: center;
-//   border-radius: 7px;
-//   transition: ease-in-out 0.2s;
-// }
-
-// button:hover {
-//   background-color: #f4ffff;
-//   color: #6d4199;
-//   cursor: pointer;
-// }
-
-.is-error {
-  background-color: #fed3d3;
-  color: #820000;
-  padding: 0.5em;
-  margin-bottom: 0em;
-  text-align: center;
-  font-size: 0.8em;
+.form-container label {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  box-sizing: border-box;
+  // text-align: left;
 }
 
 // Change this to login button

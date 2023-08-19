@@ -1,18 +1,22 @@
 <form [formGroup]="form" (ngSubmit)="login()">
-  <div class="logindetails">
-    <label>Email: </label><br />
-    <input type="text" formControlName="email" required />
-    <br /><br />
-    <div class="is-error" *ngIf="submitted && f['email'].errors">
-      *Your Valid Email Is Required.
+  <div class="form-container">
+    <div class="logindetails center">
+      <!-- <div class="center"> -->
+      <label>Email: </label><br />
+      <input type="text" formControlName="email" required />
+      <br /><br />
+      <div class="is-error" *ngIf="submitted && f['email'].errors">
+        *Your Valid Email Is Required.
+      </div>
     </div>
-  </div>
-  <div class="logindetails">
-    <label>Password: </label><br />
-    <input type="password" formControlName="password" required />
-    <br /><br />
-    <div class="is-error" *ngIf="submitted && f['password'].errors">
-      *Your Password Is Required.
+    <!-- </div> -->
+    <div class="logindetails center">
+      <label>Password: </label><br />
+      <input type="password" formControlName="password" required />
+      <br /><br />
+      <div class="is-error" *ngIf="submitted && f['password'].errors">
+        *Your Password Is Required.
+      </div>
     </div>
   </div>
 

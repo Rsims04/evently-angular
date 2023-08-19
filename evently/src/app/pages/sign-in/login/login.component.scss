@@ -1,3 +1,42 @@
+.logindetails {
+  margin: 0 auto;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+/*
+  INPUTS
+*/
+
+.logindetails input {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 20px 5px 20px;
+  background-color: transparent;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.logindetails input:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.logindetails .is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 0.5em;
+  margin-bottom: 0em;
+  text-align: center;
+  font-size: 0.8em;
+  width: 50%;
+  box-sizing: border-box;
+}
+
 .loginButtons {
   margin-top: 2em;
 }
