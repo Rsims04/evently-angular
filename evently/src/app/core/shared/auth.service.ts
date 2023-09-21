@@ -101,6 +101,7 @@ export class AuthService {
         photoURL: '../../../assets/placeholder.png',
         firstName: params.firstName,
         lastName: params.lastName,
+        role: 'user',
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (err) {

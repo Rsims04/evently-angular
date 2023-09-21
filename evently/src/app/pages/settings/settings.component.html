@@ -2,14 +2,18 @@
 <div class="container main">
   <div class="wrapper settingsHomePage">
     <div class="selectOption">
-      <h2>
-        <a routerLink="/edit-profile" class="settingsTitle">User Profile</a>
-      </h2>
-      <hr class="menu_hr" />
-      <h2>
-        <a routerLink="/admin" class="settingsTitle">Administration</a>
-      </h2>
-      <hr class="menu_hr" />
+      <div>
+        <h2>
+          <a routerLink="/edit-profile" class="settingsTitle">User Profile</a>
+        </h2>
+        <hr class="menu_hr" />
+      </div>
+      <div *ngIf="isAdmin">
+        <h2>
+          <a routerLink="/admin" class="settingsTitle">Administration</a>
+        </h2>
+        <hr class="menu_hr" />
+      </div>
     </div>
     <div class="selectSetting">
       <div class="userProfileSettings">
