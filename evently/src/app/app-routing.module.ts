@@ -6,6 +6,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/sign-in/login/login.component';
+import { RoleGuardService as RoleGuard } from './core/services/roleguard.service';
 
 const signInModule = () =>
   import('../app/pages/sign-in/sign-in.module').then((x) => x.SignInModule);
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: ManageUsersComponent,
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'admin',
+    },
   },
   {
     path: 'edit-profile',

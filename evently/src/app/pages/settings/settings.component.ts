@@ -8,6 +8,8 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import { Subject, tap } from 'rxjs';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -27,14 +29,17 @@ export class SettingsComponent implements OnInit {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.user = user;
-        this.getUserRole();
+        this.getCurrentUserData();
       } else {
         console.log('Error: user is null...');
       }
     });
   }
 
-  async getUserRole() {
+  /**
+   * Gets the current users information.
+   */
+  async getCurrentUserData() {
     if (this.user !== null) {
       console.log(this.user.uid);
       const q = query(
@@ -43,12 +48,11 @@ export class SettingsComponent implements OnInit {
       );
       const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         await getDocs(q);
-        const userData = querySnapshot.docs[0].data();
-        console.log(userData['role']);
-        const role = userData['role'];
-        if (role == 'admin') {
+        this.userData = querySnapshot.docs[0].data();
+        if (this.userData['role'] === 'admin') {
           this.isAdmin = true;
         }
+        console.log(this.userData);
       });
     } else {
       console.log('Error: user is null...');
