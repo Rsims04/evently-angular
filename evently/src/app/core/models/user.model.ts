@@ -5,5 +5,4 @@ export interface appUser {
   photoURL?: string;
   firstName?: string;
   lastName?: string;
-  token?: string;
 }
