@@ -8,18 +8,22 @@ import { appUser } from '../models/user.model';
 })
 export class RoleGuardService implements CanActivate {
   user: appUser | null;
-  userData: any = {};
 
   constructor(private userService: UserService, private router: Router) {
     this.user = this.userService.getUser();
   }
 
+  /**
+   * Checks whether user is authorised to view page.
+   * If not redirects to sign-in page.
+   */
   canActivate(route: ActivatedRouteSnapshot) {
-    const expectedRole = route.data['expectedRole'];
-    console.log('ex' + expectedRole);
+    if (this.user != null) {
+      const expectedRole = route.data['expectedRole'];
 
-    if (this.user['role'] === expectedRole) {
-      return true;
+      if (this.user['role'] === expectedRole) {
+        return true;
+      }
     }
     alert('Unauthorised...');
     this.router.navigate(['/sign-in']);

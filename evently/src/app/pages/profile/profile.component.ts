@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
    */
   async getCurrentUserData() {
     if (this.user !== null) {
-      console.log(this.user.uid);
       const q = query(
         collection(this.db, 'User'),
         where('uid', '==', this.user.uid)
@@ -49,7 +48,6 @@ export class ProfileComponent implements OnInit {
         await getDocs(q);
         this.userData = querySnapshot.docs[0].data();
       });
-      console.log(this.userData);
     } else {
       console.log('Error: user is null...');
     }

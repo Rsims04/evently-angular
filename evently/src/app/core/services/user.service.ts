@@ -9,12 +9,17 @@ export class UserService {
 
   constructor() {}
 
+  /**
+   * Set the current user in local storage for easy access.
+   */
   setUser(user: appUser) {
     this.currentUser = user;
-    console.log('us: set user: ', this.currentUser);
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
+  /**
+   * Get the current user from local storage.
+   */
   getUser() {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
