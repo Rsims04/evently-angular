@@ -7,6 +7,7 @@ import { ManageUsersComponent } from './pages/manage-users/manage-users.componen
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/sign-in/login/login.component';
 import { RoleGuardService as RoleGuard } from './core/services/roleguard.service';
+import { AuthguardService as AuthGuard } from './core/services/authguard.service';
 
 const signInModule = () =>
   import('../app/pages/sign-in/sign-in.module').then((x) => x.SignInModule);
@@ -27,10 +28,12 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     component: DashboardComponent,
   },
   {
     path: 'settings',
+    canActivate: [AuthGuard],
     component: SettingsComponent,
   },
   {
@@ -43,6 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-profile',
+    canActivate: [AuthGuard],
     component: ProfileComponent,
   },
 

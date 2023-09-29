@@ -17,6 +17,7 @@ import { getDocs, onSnapshot, query, where } from 'firebase/firestore';
 })
 export class AuthService {
   user: appUser | null;
+  isAuthenticated: boolean = false;
 
   constructor(
     private auth: Auth,
@@ -27,6 +28,10 @@ export class AuthService {
     this.getDataFromFirebase();
   }
 
+  /**
+   * Authenticates and gets the current users data from Firebase.
+   * Also adds it to localstorage.
+   */
   getDataFromFirebase() {
     this.auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -37,14 +42,13 @@ export class AuthService {
         );
         const unsubscribe = onSnapshot(q, async (querySnapshot) => {
           await getDocs(q).then((doc) => {
-            console.log(doc);
             this.user = doc.docs[0].data() as appUser;
-            console.log('user', this.user);
+            console.log('user found:', this.user);
             this.userService.setUser(this.user);
           });
         });
       } else {
-        console.log('Error: user is null...');
+        console.log('User is null...');
       }
     });
   }
@@ -58,6 +62,7 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       signInWithEmailAndPassword(this.auth, params.email, params.password).then(
         (res) => {
+          this.isAuthenticated = true;
           resolve(res);
         },
         (err) => {
@@ -113,6 +118,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * NOTE: Possibly move user profile changes to here or User Service.
+   * Instead of in user profile.
+   */
   setUserData(user: any) {}
 
   /**
@@ -122,32 +131,13 @@ export class AuthService {
     this.auth.signOut().then(
       () => {
         localStorage.removeItem('currentUser');
+        this.isAuthenticated = false;
         this.router.navigate(['/sign-in']);
       },
       (err) => {
         alert(err.message);
       }
     );
-  }
-
-  /**
-   * Checks users current state.
-   */
-  check(): User {
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User Signed In
-        console.log('User Signed In!!');
-        this.user = user;
-        return user;
-      } else {
-        // User is signed out
-        console.log('User Signed out!!');
-        // ...
-        return null;
-      }
-    });
-    return null;
   }
 }
 
