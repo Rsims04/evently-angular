@@ -12,29 +12,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./manage-users.component.scss'],
 })
 export class ManageUsersComponent {
-  faTrash = faTrash;
-  backgroundColour = 1;
   users$: Observable<appUser[]> | null;
+  selectedUser: String | null;
+  faTrash = faTrash;
 
   constructor(private dialog: MatDialog, private userService: UserService) {
-    // GET USERS
     this.users$ = from(this.userService.getUsers());
-  }
-
-  /**
-   * Toggle Table Background Colour
-   */
-  toggleBackground() {
-    switch (this.backgroundColour) {
-      case 1:
-        this.backgroundColour = 2;
-        return '#f4ffff';
-      case 2:
-        this.backgroundColour = 1;
-        return 'rgba(109,65,153,0.1)';
-      default:
-        return '#f4ffff';
-    }
   }
 
   /**
@@ -49,4 +32,7 @@ export class ManageUsersComponent {
     });
     this.users$.forEach((data) => console.log(data));
   }
+}
+function ngAfterContentChecked() {
+  throw new Error('Function not implemented.');
 }

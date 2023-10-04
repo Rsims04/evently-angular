@@ -17,19 +17,14 @@
     </div>
 
     <!-- This is the grid to display users -->
-    <div id="grid" class="user_grid">
+    <div id="grid">
       <div class="th">Username</div>
       <div class="th">Role</div>
       <div class="th"></div>
       <div class="th"></div>
       <div class="th"></div>
     </div>
-    <div
-      id="grid"
-      class="user_grid"
-      [ngStyle]="{ 'background-color': toggleBackground() }"
-      *ngFor="let item of users$ | async"
-    >
+    <div id="grid" class="user_grid" *ngFor="let item of users$ | async">
       <div class="td">
         {{ item.displayName }}
       </div>
