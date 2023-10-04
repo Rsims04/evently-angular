@@ -27,7 +27,7 @@
     <div
       id="grid"
       class="user_grid"
-      [ngStyle]="{ 'background-color': backgroundColour }"
+      [ngStyle]="{ 'background-color': toggleBackground() }"
       *ngFor="let item of users$ | async"
     >
       <div class="td">
@@ -46,7 +46,6 @@
       <div class="td" id="delete_div">
         <fa-icon [icon]="faTrash" class="fa-solid fa-trash-can"></fa-icon>
       </div>
-      {{ toggleBackground() }}
     </div>
 
     <hr class="rounded" />

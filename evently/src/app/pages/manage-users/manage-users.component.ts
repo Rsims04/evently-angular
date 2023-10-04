@@ -13,7 +13,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 })
 export class ManageUsersComponent {
   faTrash = faTrash;
-  backgroundColour = '#f4ffff';
+  backgroundColour = 1;
   users$: Observable<appUser[]> | null;
 
   constructor(private dialog: MatDialog, private userService: UserService) {
@@ -26,12 +26,14 @@ export class ManageUsersComponent {
    */
   toggleBackground() {
     switch (this.backgroundColour) {
-      case '#f4ffff':
-        this.backgroundColour = 'rgba(109,65,153,0.1)';
-        break;
-      case 'rgba(109,65,153,0.1)':
-        this.backgroundColour = '#f4ffff';
-        break;
+      case 1:
+        this.backgroundColour = 2;
+        return '#f4ffff';
+      case 2:
+        this.backgroundColour = 1;
+        return 'rgba(109,65,153,0.1)';
+      default:
+        return '#f4ffff';
     }
   }
 
