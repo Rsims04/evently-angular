@@ -1,0 +1,70 @@
+<div *ngIf="data.field == 'addUser'; else isDelete">
+  <div *ngIf="loading == false; else currentlyLoading">
+    <button class="submit" (click)="changeDetail(detail)">Confirm</button>
+  </div>
+
+  <ng-template #currentlyLoading>
+    <button class="create_account_button loadingButton">
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    </button>
+  </ng-template>
+  <!-- Modal - Add New User -->
+  <div id="add_user_modal" class="modal">
+    <!-- Add User Modal Content -->
+    <div class="modal-content container">
+      <span class="close">&times;</span>
+      <h1>Create New User</h1>
+      <p>Fill out form below to create new user:</p>
+      <br />
+      <form onsubmit="return false;">
+        <div class="logindetails">
+          <label for="Uname">Username: </label><br />
+          <input type="text" id="Uname" name="Uname" /><br /><br />
+        </div>
+
+        <div class="logindetails">
+          <label for="emailName">E-mail: </label><br />
+          <input type="text" id="emailName" name="emailName" /><br /><br />
+        </div>
+
+        <div class="logindetails">
+          <label for="Rname">Role: </label><br />
+          <select id="Rname" name="Rame">
+            <option value="1">admin</option>
+            <option value="2">user</option>
+          </select>
+          <br /><br />
+        </div>
+
+        <div class="logindetails">
+          <label for="Pname">Password: </label><br />
+          <input type="Password" id="Pname" name="Pname" /> <br /><br />
+        </div>
+
+        <div class="logindetails">
+          <label for="Pname">Confirm Password: </label><br />
+          <input type="Password" id="confirmPname" name="Pname" />
+          <br /><br />
+        </div>
+
+        <button class="add_user_button" onclick="create_user();">
+          Add User
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal - Delete User -->
+<ng-template #isDelete>
+  <div id="delete_user_modal" class="modal">
+    <!-- Add Delete Modal Content -->
+    <div class="modal-content container">
+      <span class="close">&times;</span>
+      <h1>Delete User</h1>
+      <p id="delete_p">Are you sure you want to delete</p>
+      <br />
+      <button class="delete_user_button">Yes, I'm sure.</button>
+    </div>
+  </div>
+</ng-template>
