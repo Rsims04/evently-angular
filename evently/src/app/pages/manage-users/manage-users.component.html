@@ -32,12 +32,15 @@
         {{ item.role }}
       </div>
       <div class="td" id="select_div">
-        <select>
-          <option value="Admin">User</option>
-          <option value="User">Admin</option>
+        <select #select (change)="onSelected(select.value)">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option selected disabled hidden>Select an option</option>
         </select>
       </div>
-      <div class="td" id="btn_div"><button>Save</button></div>
+      <div class="td" id="btn_div">
+        <button (click)="changeRole(select.value, item.uid)">Save</button>
+      </div>
       <div class="td" id="delete_div">
         <fa-icon [icon]="faTrash" class="fa-solid fa-trash-can"></fa-icon>
       </div>

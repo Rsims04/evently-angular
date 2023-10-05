@@ -3,12 +3,13 @@ import { appUser } from '../models/user.model';
 import { Firestore } from '@angular/fire/firestore';
 import {
   collection,
-  doc,
   getDocs,
   onSnapshot,
   query,
+  updateDoc,
+  where,
 } from 'firebase/firestore';
-import { Observable, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,23 +38,39 @@ export class UserService {
   /**
    * Gets a list of all users.
    */
-  async getUsers() {
-    // const querySnapshot = await getDocs(collection(this.db, 'User'));
-    // querySnapshot.forEach((doc) => {
-    //   console.log(doc.id, ' => ', doc.data());
-    //   // this.users$.push(doc.data() as appUser);
-    // });
-    // console.log(this.users$);
-    // return this.users$;
-
-    const userList = [];
+  getUsers(): Observable<appUser[]> {
+    let userList = [];
+    console.log('get users...');
     const q = query(collection(this.db, 'User'));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log('USER =>', doc.data());
-        userList.push(doc.data());
+    return new Observable((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        userList = [];
+        querySnapshot.forEach((doc) => {
+          userList.push(doc.data());
+        });
+        observer.next(userList);
       });
+      return () => {
+        unsubscribe();
+      };
     });
-    return userList;
+  }
+
+  async changeRole(detail: String, uid: String) {
+    try {
+      const q = query(collection(this.db, 'User'), where('uid', '==', uid));
+
+      const querySnapshot = await getDocs(q);
+      const docRef = querySnapshot.docs[0].ref;
+      console.log('DOC REF:', docRef);
+
+      await updateDoc(docRef, {
+        ['role']: detail,
+      });
+
+      console.log('Changed:', 'role', 'to', detail);
+    } catch (e) {
+      console.log('Failed:', 'role', 'to', detail);
+    }
   }
 }
