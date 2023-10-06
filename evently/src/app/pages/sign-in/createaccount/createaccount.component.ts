@@ -55,6 +55,7 @@ export class CreateAccountComponent {
         password: this.f['password'].value,
         firstName: this.f['firstName'].value,
         lastName: this.f['lastName'].value,
+        role: 'user',
       })
       .then(
         (res) => {

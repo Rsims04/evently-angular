@@ -5,8 +5,14 @@ import {
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { User } from 'firebase/auth';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+} from '@angular/fire/firestore';
+import { User, getAuth } from 'firebase/auth';
 import { Observable, of } from 'rxjs';
 import { appUser } from '../models/user.model';
 import { UserService } from '../services/user.service';
@@ -36,17 +42,26 @@ export class AuthService {
     this.auth.onAuthStateChanged(async (user) => {
       if (user) {
         console.log('logged in', user.uid);
-        const q = query(
-          collection(this.db, 'User'),
-          where('uid', '==', user.uid)
-        );
-        const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-          await getDocs(q).then((doc) => {
-            this.user = doc.docs[0].data() as appUser;
-            console.log('user found:', this.user);
-            this.userService.setUser(this.user);
+        try {
+          const q = query(
+            collection(this.db, 'User'),
+            where('uid', '==', user.uid)
+          );
+          const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+            await getDocs(q).then((doc) => {
+              try {
+                this.user = doc.docs[0].data() as appUser;
+                console.log('user found:', this.user);
+                this.userService.setUser(this.user);
+              } catch (e) {
+                console.log('user not found...');
+                this.logout();
+              }
+            });
           });
-        });
+        } catch (e) {
+          console.log('User is null...');
+        }
       } else {
         console.log('User is null...');
       }
@@ -110,7 +125,7 @@ export class AuthService {
         photoURL: '../../../assets/placeholder.png',
         firstName: params.firstName,
         lastName: params.lastName,
-        role: 'user',
+        role: params.role,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (err) {
@@ -123,6 +138,28 @@ export class AuthService {
    * Instead of in user profile.
    */
   setUserData(user: any) {}
+
+  /**
+   * Deletes a user
+   */
+  async deleteUser(uid) {
+    // Delete from database
+    try {
+      const q = query(collection(this.db, 'User'), where('uid', '==', uid));
+
+      const querySnapshot = await getDocs(q);
+      const docRef = querySnapshot.docs[0].ref;
+      console.log('DOC REF:', docRef);
+
+      await deleteDoc(docRef);
+
+      console.log('Deleted', uid);
+    } catch (e) {
+      console.log('Failed to delete:', uid);
+    }
+
+    // Can't delete from Firebase Auth
+  }
 
   /**
    * Log out user.
@@ -152,4 +189,5 @@ type Register = {
   password: string;
   firstName: string;
   lastName: string;
+  role: string;
 };
