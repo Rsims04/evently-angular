@@ -110,7 +110,7 @@ export class AuthService {
         photoURL: '../../../assets/placeholder.png',
         firstName: params.firstName,
         lastName: params.lastName,
-        role: 'user',
+        role: params.role,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (err) {
@@ -152,4 +152,5 @@ type Register = {
   password: string;
   firstName: string;
   lastName: string;
+  role: string;
 };

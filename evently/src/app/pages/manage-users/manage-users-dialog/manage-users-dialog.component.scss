@@ -1,9 +1,76 @@
 .mdc-dialog__surface {
   border-radius: 20px !important;
-  padding: 50px;
+  padding: 50px 100px 50px 100px;
   width: 50vw;
 }
 
+//
+.form-set {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-account-details {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.create-account-details label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*
+  INPUTS
+*/
+
+.create-account-details input {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 20px 5px 20px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-account-details input:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.create-account-details .is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 0.5em;
+  margin-bottom: 0em;
+  text-align: center;
+  font-size: 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#CreateHeading {
+  // margin-bottom: 1em;
+}
+
+.create_account_Button {
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.loadingButton {
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}
+
+//
 .form-container {
   padding-bottom: 1em;
 }
@@ -22,15 +89,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 10px;
 }
 
 select {
-  margin: 0 auto;
+  // margin: 0 auto;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid #6d4199;
-  padding: 12px 30px 12px 30px;
+  // padding: 12px 30px 12px 30px;
   text-align: center;
 }
 
@@ -103,16 +170,21 @@ select:hover {
   transition: ease all 0.3s;
 }
 
-select {
-  margin: 0 auto;
-  background-color: transparent;
+.create-account-details select {
   border: none;
   border-bottom: 2px solid #6d4199;
-  padding: 12px 30px 12px 30px;
-  text-align: center;
+  padding: 5px 85px 5px 85px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-select:hover {
+.create-account-details select:focus {
+  outline: none;
   border-bottom: 2px solid #8011e2;
-  cursor: pointer;
+}
+
+.delete_user_button:hover {
+  border-color: red;
+  color: red;
 }
