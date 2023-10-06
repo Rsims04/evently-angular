@@ -103,6 +103,7 @@ export class ManageUsersDialogComponent {
    */
   deleteUser() {
     console.log(this.userName, this.uid);
+    this.auth.deleteUser(this.uid);
   }
 }
 
