@@ -18,14 +18,18 @@
 
     <!-- This is the grid to display users -->
     <div id="grid">
-      <div class="th">Username</div>
+      <div class="th">User</div>
       <div class="th">Role</div>
       <div class="th"></div>
       <div class="th"></div>
       <div class="th"></div>
     </div>
     <div id="grid" class="user_grid" *ngFor="let item of users$ | async">
+      <!-- <div class="td">
+        <img class="thumbnail" src="{{ item.photoURL }}" />
+      </div> -->
       <div class="td">
+        <img class="thumbnail" src="{{ item.photoURL }}" />
         {{ item.displayName }}
       </div>
       <div class="td">
@@ -39,10 +43,14 @@
         </select>
       </div>
       <div class="td" id="btn_div">
-        <button (click)="changeRole(select.value, item.uid)">Save</button>
+        <button class="save_button" (click)="changeRole(select.value, item.uid)">Save</button>
       </div>
       <div class="td" id="delete_div">
-        <fa-icon [icon]="faTrash" class="fa-solid fa-trash-can"></fa-icon>
+        <fa-icon
+          [icon]="faTrash"
+          class="fa-solid fa-trash-can"
+          (click)="openModal('deleteUser', item.displayName, item.uid)"
+        ></fa-icon>
       </div>
     </div>
 

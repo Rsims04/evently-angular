@@ -41,7 +41,7 @@ h3 {
 .container {
   margin: auto;
   padding: 50px;
-  min-width: 380px;
+  min-width: 750px;
   background-color: #f4ffff;
   border-radius: 25px;
   box-shadow: 0.3em 0.5em 3em rgba(0, 0, 0, 0.7);
@@ -50,7 +50,7 @@ h3 {
 
 .main {
   width: 60%;
-  min-width: 380px;
+  min-width: 750px;
   margin-top: 3em;
 }
 
@@ -317,13 +317,15 @@ hr.rounded {
 
 #grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 167px 167px repeat(3, 1fr);
   align-items: center;
+  // grid-auto-columns: 1fr;
 }
 
 .th,
 .td {
   display: flex;
+
   align-items: center;
   text-align: left;
   padding: 15px;
@@ -331,9 +333,14 @@ hr.rounded {
 }
 
 .th {
-  padding-left: 0px;
   font-weight: bold;
   border-bottom: 1px solid rgba(109, 65, 153, 1);
+}
+
+.th:nth-child(1),
+.th:nth-child(2),
+.td:nth-child(1),
+.td:nth-child(2) {
 }
 
 .td:nth-child(3) {
@@ -498,13 +505,17 @@ footer {
 /* 
       RESPONSIVE 
   */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
   .logInPage,
   .main {
     min-width: 300px;
     padding-left: 20px;
     padding-right: 20px;
     transition: ease all 0.5s;
+  }
+
+  .container {
+    min-width: 380px;
   }
 
   header {
@@ -680,4 +691,11 @@ footer {
 .darkModeThemeDiv {
   color: #fff9f7;
   background-color: #353438;
+}
+
+.thumbnail {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
 }

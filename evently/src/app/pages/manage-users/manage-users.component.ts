@@ -3,7 +3,7 @@ import { ManageUsersDialogComponent } from './manage-users-dialog/manage-users-d
 import { MatDialog } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
-import { Observable, from, takeWhile } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, from, takeWhile } from 'rxjs';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -19,8 +19,6 @@ export class ManageUsersComponent implements OnInit {
   constructor(private dialog: MatDialog, private userService: UserService) {}
 
   async ngOnInit(): Promise<void> {
-    console.log('ngoninit...');
-
     this.users$ = await this.userService.getUsers();
     this.users$.subscribe((data) => {
       console.log(data);
@@ -30,11 +28,13 @@ export class ManageUsersComponent implements OnInit {
   /**
    * Opens modal and sends correct field information.
    */
-  openModal(field: string): void {
+  openModal(field: String, userName?: String, uid?: String): void {
     const dialogRef = this.dialog.open(ManageUsersDialogComponent, {
       panelClass: 'custom-dialog-class',
       data: {
         field,
+        userName,
+        uid,
       },
     });
     this.users$.forEach((data) => console.log(data));

@@ -1,14 +1,6 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import {
-  Firestore,
-  collection,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { getAuth, updateEmail, updateProfile } from 'firebase/auth';
 
 @Component({
   selector: 'app-manage-users-dialog',
@@ -17,9 +9,11 @@ import { getAuth, updateEmail, updateProfile } from 'firebase/auth';
   encapsulation: ViewEncapsulation.None,
 })
 export class ManageUsersDialogComponent {
-  field: string = this.data.field;
-  fieldName: string = this.data.fieldName;
-  detail: string;
+  field: String = this.data.field;
+  userName: String = this.data.userName;
+  uid: String = this.data.uid;
+  fieldName: String = this.data.fieldName;
+  detail: String;
   loading: boolean = false;
 
   constructor(
@@ -41,57 +35,24 @@ export class ManageUsersDialogComponent {
    *
    * TODO: validate email and check username (duplicates).
    */
-  async changeDetail(detail: string) {
-    this.loading = true;
+  async changeDetail(detail: String) {}
 
-    console.log('Changing:', this.field, 'to', detail);
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      if (this.field === 'email') {
-        const auth = getAuth();
-        updateEmail(user, detail)
-          .then(() => {
-            // Email updated!
-            console.log('email updated to:', detail);
-          })
-          .catch((error) => {
-            // An error occurred
-            this.loading = false;
-            console.log('Error changing email: ', error.message);
-          });
-      }
-
-      const q = query(
-        collection(this.db, 'User'),
-        where('uid', '==', user.uid)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const docRef = querySnapshot.docs[0].ref;
-      console.log('DOC REF:', docRef);
-
-      await updateDoc(docRef, {
-        [this.field]: detail,
-      });
-      this.loading = false;
-      console.log('Changed:', this.field, 'to', detail);
-
-      this.dialogRef.close(this.data);
-    } else {
-      this.loading = false;
-      console.log('Failed:', this.field, 'to', detail);
-    }
+  /**
+   * Deletes User from firestore and auth
+   */
+  deleteUser() {
+    console.log(this.userName, this.uid);
   }
 }
 
 export interface ManageUsersDialogData {
-  fieldName: string;
-  field: string;
+  fieldName: String;
+  field: String;
+  userName?: String;
+  uid?: String;
 }
 
 export interface ManageUsersDialogResult {
-  field: string;
-  fieldName: string;
+  field: String;
+  fieldName: String;
 }
