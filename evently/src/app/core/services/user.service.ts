@@ -3,6 +3,7 @@ import { appUser } from '../models/user.model';
 import { Firestore } from '@angular/fire/firestore';
 import {
   collection,
+  doc,
   getDocs,
   onSnapshot,
   query,
@@ -47,6 +48,9 @@ export class UserService {
         userList = [];
         querySnapshot.forEach((doc) => {
           userList.push(doc.data());
+
+          // Sort by display Name
+          userList.sort((a, b) => a.displayName.localeCompare(b.displayName));
         });
         observer.next(userList);
       });
