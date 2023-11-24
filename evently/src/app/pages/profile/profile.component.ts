@@ -26,11 +26,12 @@ export class ProfileComponent implements OnInit {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.user = user;
-        this.userData$ = (
-          await this.userService.getCurrentUserData()
-        ).subscribe((data) => {
-          this.userData$ = data;
-        });
+        // this.userData$
+        let subscribe = (await this.userService.getCurrentUserData()).subscribe(
+          (data) => {
+            this.userData$ = data;
+          }
+        );
       } else {
         console.log('Error: user is null...');
       }

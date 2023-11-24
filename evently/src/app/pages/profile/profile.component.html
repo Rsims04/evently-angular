@@ -8,7 +8,7 @@
         id="edit_uname"
         (click)="editDetail('displayName', 'Username')"
       >
-        <h1 id="userName">{{ userData?.displayName }}</h1>
+        <h1 id="userName">{{ userData$?.displayName }}</h1>
         <div class="tooltip top">Edit Username</div>
       </div>
     </div>
@@ -20,7 +20,7 @@
     >
       <div class="tooltip top">Edit Profile Image</div>
       <img
-        src="{{ userData?.photoURL }}"
+        src="{{ userData$?.photoURL }}"
         alt="profile image"
         class="profile_image"
         id="u_img"
@@ -33,7 +33,7 @@
       id="edit_email"
       (click)="editDetail('email', 'Email')"
     >
-      <p id="u_email">{{ userData?.email }}</p>
+      <p id="u_email">{{ userData$?.email }}</p>
 
       <div class="tooltip top">Edit Email</div>
     </div>
@@ -44,7 +44,7 @@
       id="edit_fname"
       (click)="editDetail('firstName', 'First Name')"
     >
-      <p id="u_fname">{{ userData?.firstName }}</p>
+      <p id="u_fname">{{ userData$?.firstName }}</p>
       <span class="tooltip top"> Edit First Name </span>
     </div>
 
@@ -54,7 +54,7 @@
       id="edit_lname"
       (click)="editDetail('lastName', 'Last Name')"
     >
-      <p id="u_lname">{{ userData.lastName }}</p>
+      <p id="u_lname">{{ userData$.lastName }}</p>
 
       <span class="tooltip top"> Edit Last Name </span>
     </div>
