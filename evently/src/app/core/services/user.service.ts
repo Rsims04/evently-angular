@@ -3,7 +3,6 @@ import { appUser } from '../models/user.model';
 import { Firestore } from '@angular/fire/firestore';
 import {
   collection,
-  doc,
   getDocs,
   onSnapshot,
   query,
@@ -60,6 +59,35 @@ export class UserService {
     });
   }
 
+  /**
+   * Gets the current users information.
+   */
+  async getCurrentUserData() {
+    let user = this.getUser();
+    if (user !== null) {
+      const q = query(
+        collection(this.db, 'User'),
+        where('uid', '==', user.uid)
+      );
+      return new Observable((observer) => {
+        const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+          await getDocs(q);
+          let userData = querySnapshot.docs[0].data();
+          observer.next(userData);
+        });
+        return () => {
+          unsubscribe();
+        };
+      });
+    } else {
+      console.log('Error: user is null...');
+      return null;
+    }
+  }
+
+  /**
+   * Changes the role of a user.
+   */
   async changeRole(detail: String, uid: String) {
     try {
       const q = query(collection(this.db, 'User'), where('uid', '==', uid));
