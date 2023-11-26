@@ -105,4 +105,21 @@ export class UserService {
       console.log('Failed:', 'role', 'to', detail);
     }
   }
+
+  async changeDetail(field: string, detail: string) {
+    if (this.currentUser) {
+      const q = query(
+        collection(this.db, 'User'),
+        where('uid', '==', this.currentUser.uid)
+      );
+
+      const querySnapshot = await getDocs(q);
+      const docRef = querySnapshot.docs[0].ref;
+      console.log('DOC REF:', docRef);
+
+      await updateDoc(docRef, {
+        [field]: detail,
+      });
+    }
+  }
 }
