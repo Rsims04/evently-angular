@@ -12,7 +12,7 @@ import {
   deleteDoc,
   doc,
 } from '@angular/fire/firestore';
-import { User, getAuth } from 'firebase/auth';
+import { User, getAuth, updateEmail } from 'firebase/auth';
 import { Observable, of } from 'rxjs';
 import { appUser } from '../models/user.model';
 import { UserService } from '../services/user.service';
@@ -138,6 +138,23 @@ export class AuthService {
    * Instead of in user profile.
    */
   setUserData(user: any) {}
+
+  /**
+   * Update User Email
+   */
+  async updateUserEmail(detail: string) {
+    const user = this.auth.currentUser;
+
+    return new Promise((resolve, reject) => {
+      updateEmail(user, detail)
+        .then(() => {
+          resolve({ success: true });
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
 
   /**
    * Deletes a user
