@@ -1,0 +1,14 @@
+.grid {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.event {
+  margin: 20px;
+  padding: 50px;
+  width: 200px;
+  border: 2px solid red;
+  flex-grow: 2;
+}
