@@ -25,9 +25,6 @@
       <div class="th"></div>
     </div>
     <div id="grid" class="user_grid" *ngFor="let item of users$ | async">
-      <!-- <div class="td">
-        <img class="thumbnail" src="{{ item.photoURL }}" />
-      </div> -->
       <div class="td">
         <img class="thumbnail" src="{{ item.photoURL }}" />
         {{ item.displayName }}
@@ -43,7 +40,12 @@
         </select>
       </div>
       <div class="td" id="btn_div">
-        <button class="save_button" (click)="changeRole(select.value, item.uid)">Save</button>
+        <button
+          class="save_button"
+          (click)="changeRole(select.value, item.uid)"
+        >
+          Save
+        </button>
       </div>
       <div class="td" id="delete_div">
         <fa-icon
