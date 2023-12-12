@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThisWeekComponent } from './this-week.component';
+import { ThisWeekComponent } from './whats-on.component';
 
 describe('ThisWeekComponent', () => {
   let component: ThisWeekComponent;
@@ -8,7 +8,7 @@ describe('ThisWeekComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ThisWeekComponent]
+      declarations: [ThisWeekComponent],
     });
     fixture = TestBed.createComponent(ThisWeekComponent);
     component = fixture.componentInstance;

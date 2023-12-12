@@ -1,4 +1,44 @@
 .dashboard {
+  // padding: 50px;
+  display: flex;
+  // min-width: 80vw;
+}
+
+.wide {
+  width: 80%;
+  min-width: 380px;
+  margin-top: 3em;
+}
+
+.side-menu {
+  width: 20%;
+  border-right: 2px solid #d8d8d8;
+}
+
+.menu {
+  // display: block;
+}
+
+.menu-item {
+  display: block;
+  color: #6d4199;
+  text-align: center;
+  padding: 25px 20px 25px 10px;
+  border: 1px solid #6d4199;
+  border-radius: 15px;
+  margin: 10px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #6d4199;
+}
+
+.content {
+  width: 80%;
   padding: 50px;
 }
 

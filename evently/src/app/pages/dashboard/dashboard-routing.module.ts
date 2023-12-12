@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThisWeekComponent } from './this-week/this-week/this-week.component';
+import { WhatsOnComponent } from './whats-on/whats-on/whats-on.component';
 import { MyEventsComponent } from './my-events/my-events/my-events.component';
 import { CalendarComponent } from './calendar/calendar/calendar.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ThisWeekComponent,
+    component: WhatsOnComponent,
   },
   {
-    path: 'this-week',
-    component: ThisWeekComponent,
+    path: 'whats-on',
+    component: WhatsOnComponent,
   },
   {
     path: 'my-events',

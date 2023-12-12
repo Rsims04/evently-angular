@@ -3,15 +3,20 @@
   <!-- <div class="eventHeader">
     <p id="addEvent">+ Add Event</p>
   </div> -->
-  <div class="dashboard">
-    <div class="container dashboard">
-      <h1>Dashboard</h1>
-      <nav>
-        <a class="button" routerLink="this-week">This Week</a> |
-        <a class="button" routerLink="my-events">My Events</a> |
-        <a class="button" routerLink="calendar">Calendar</a>
-      </nav>
-      <router-outlet></router-outlet>
+  <div class="container wide">
+    <h1>Dashboard</h1>
+    <hr />
+    <div class="dashboard">
+      <div class="side-menu">
+        <nav class="menu">
+          <a class="menu-item" routerLink="whats-on">What's On</a>
+          <a class="menu-item" routerLink="my-events">My Events</a>
+          <a class="menu-item" routerLink="calendar">Calendar</a>
+        </nav>
+      </div>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 
