@@ -43,20 +43,31 @@ export class CreateAccountComponent {
     this.loading = true;
 
     if (this.form.invalid) {
+      this.loading = false;
       console.log('INVALID');
       return;
     }
 
-    this.auth.register({
+    this.auth
+      .register({
         displayName: this.f['displayName'].value,
         email: this.f['email'].value,
         password: this.f['password'].value,
         firstName: this.f['firstName'].value,
-        lastName: this.f['lastName'].value
-      }
-    );
-
-    alert('Signed Up...' + this.f['displayName'].value);
-    this.router.navigateByUrl('sign-in');
+        lastName: this.f['lastName'].value,
+        role: 'user',
+      })
+      .then(
+        (res) => {
+          console.log(res);
+          alert('Account Created.');
+          this.router.navigateByUrl('sign-in');
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+          alert('Signed Up...' + this.f['displayName'].value);
+        }
+      );
   }
 }

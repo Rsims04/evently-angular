@@ -22,7 +22,11 @@ import { AuthService } from './core/shared/auth.service';
 import { ModalComponent } from './core/components/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
+import { ManageUsersDialogComponent } from './pages/manage-users/manage-users-dialog/manage-users-dialog.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,7 @@ import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-d
     ProfileComponent,
     ModalComponent,
     ProfileDialogComponent,
+    ManageUsersDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-d
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    FontAwesomeModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

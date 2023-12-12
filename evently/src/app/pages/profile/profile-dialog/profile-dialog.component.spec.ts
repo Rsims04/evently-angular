@@ -8,7 +8,7 @@ describe('ProfileDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileDialogComponent]
+      declarations: [ProfileDialogComponent],
     });
     fixture = TestBed.createComponent(ProfileDialogComponent);
     component = fixture.componentInstance;

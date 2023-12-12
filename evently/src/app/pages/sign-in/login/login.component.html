@@ -1,23 +1,35 @@
 <form [formGroup]="form" (ngSubmit)="login()">
-  <div class="logindetails">
-    <label>Email: </label><br />
-    <input type="text" formControlName="email" required />
-    <br /><br />
-    <div class="is-error" *ngIf="submitted && f['email'].errors">
-      *Your Valid Email Is Required.
+  <div class="form-container">
+    <div class="logindetails center">
+      <!-- <div class="center"> -->
+      <label>Email: </label><br />
+      <input type="text" formControlName="email" required />
+      <br /><br />
+      <div class="is-error" *ngIf="submitted && f['email'].errors">
+        *Your Valid Email Is Required.
+      </div>
     </div>
-  </div>
-  <div class="logindetails">
-    <label>Password: </label><br />
-    <input type="password" formControlName="password" required />
-    <br /><br />
-    <div class="is-error" *ngIf="submitted && f['password'].errors">
-      *Your Password Is Required.
+    <!-- </div> -->
+    <div class="logindetails center">
+      <label>Password: </label><br />
+      <input type="password" formControlName="password" required />
+      <br /><br />
+      <div class="is-error" *ngIf="submitted && f['password'].errors">
+        *Your Password Is Required.
+      </div>
     </div>
   </div>
 
   <div class="loginButtons">
     <a routerLink="create-account" id="CreateAccount">Create Account</a>
-    <button type="submit" class="loginButton">Sign In</button>
+    <div *ngIf="loading == false; else currentlyLoading">
+      <button type="submit" class="loginButton">Sign In</button>
+    </div>
+
+    <ng-template #currentlyLoading>
+      <button class="loginButton loadingButton">
+        <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+      </button>
+    </ng-template>
   </div>
 </form>

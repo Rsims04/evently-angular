@@ -1,33 +1,71 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { User, browserSessionPersistence, setPersistence } from 'firebase/auth';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+} from '@angular/fire/firestore';
+import { User, getAuth, updateEmail } from 'firebase/auth';
+import { Observable, of } from 'rxjs';
+import { appUser } from '../models/user.model';
+import { UserService } from '../services/user.service';
+import { getDocs, onSnapshot, query, where } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userData: any;
-  loggedIn: boolean;
+  user: appUser | null;
+  isAuthenticated: boolean = false;
 
   constructor(
     private auth: Auth,
+    private userService: UserService,
     private router: Router,
     private db: Firestore
   ) {
-    
+    this.getDataFromFirebase();
   }
 
   /**
-   * Gets the current user.
+   * Authenticates and gets the current users data from Firebase.
+   * Also adds it to localstorage.
    */
-  getUser() {
-    return this.auth.currentUser;
-  }
-
-  async getUserData() {
-    
+  getDataFromFirebase() {
+    this.auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        console.log('logged in', user.uid);
+        try {
+          const q = query(
+            collection(this.db, 'User'),
+            where('uid', '==', user.uid)
+          );
+          const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+            await getDocs(q).then((doc) => {
+              try {
+                this.user = doc.docs[0].data() as appUser;
+                console.log('user found:', this.user);
+                this.userService.setUser(this.user);
+              } catch (e) {
+                console.log('user not found...');
+                this.logout();
+              }
+            });
+          });
+        } catch (e) {
+          console.log('User is null...');
+        }
+      } else {
+        console.log('User is null...');
+      }
+    });
   }
 
   /**
@@ -35,20 +73,19 @@ export class AuthService {
    * On success: navigate to dashboard.
    * On failure: catch error, do nothing.
    */
-  login(params: Login) {
-    setPersistence(this.auth, browserSessionPersistence);
-    signInWithEmailAndPassword(this.auth, params.email, params.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user.email, user.uid);
-        
-        this.router.navigate(['/dashboard']);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  login(params: Login): Promise<Observable<any>> {
+    return new Promise<any>((resolve, reject) => {
+      signInWithEmailAndPassword(this.auth, params.email, params.password).then(
+        (res) => {
+          this.isAuthenticated = true;
+          resolve(res);
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
   /**
@@ -56,24 +93,24 @@ export class AuthService {
    * On success: navigate to login page.
    * On failure: catch error, do nothing.
    */
-  register(
-    params: Register
-  ) {
-    createUserWithEmailAndPassword(this.auth, params.email, params.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        
-        this.writeToDB(params, user);
-
-        this.router.navigate(['/sign-in']);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+  register(params: Register): Promise<Observable<any>> {
+    return new Promise<any>((resolve, reject) => {
+      createUserWithEmailAndPassword(
+        this.auth,
+        params.email,
+        params.password
+      ).then(
+        (res) => {
+          const user = res.user;
+          this.writeToDB(params, user);
+          resolve(res);
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
   /**
@@ -81,23 +118,64 @@ export class AuthService {
    */
   async writeToDB(params: Register, user: User) {
     try {
-      const docRef = await addDoc(collection(this.db, "User"), {
+      const docRef = await addDoc(collection(this.db, 'User'), {
         uid: user.uid,
         email: params.email,
         displayName: params.displayName,
         photoURL: '../../../assets/placeholder.png',
         firstName: params.firstName,
         lastName: params.lastName,
+        role: params.role,
       });
-      console.log("Document written with ID: ", docRef.id);
-
-    } catch(err) {
-      console.error("writeToDB failed: ", err);
+      console.log('Document written with ID: ', docRef.id);
+    } catch (err) {
+      console.error('writeToDB failed: ', err);
     }
   }
 
-  setUserData(user: any) {
-    
+  /**
+   * NOTE: Possibly move user profile changes to here or User Service.
+   * Instead of in user profile.
+   */
+  setUserData(user: any) {}
+
+  /**
+   * Update User Email
+   */
+  async updateUserEmail(detail: string) {
+    const user = this.auth.currentUser;
+
+    return new Promise((resolve, reject) => {
+      updateEmail(user, detail)
+        .then(() => {
+          resolve({ success: true });
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  /**
+   * Deletes a user
+   */
+  async deleteUser(uid) {
+    // Delete from database
+    try {
+      const q = query(collection(this.db, 'User'), where('uid', '==', uid));
+
+      const querySnapshot = await getDocs(q);
+      const docRef = querySnapshot.docs[0].ref;
+      console.log('DOC REF:', docRef);
+
+      await deleteDoc(docRef);
+
+      console.log('Deleted', uid);
+    } catch (e) {
+      console.log('Failed to delete:', uid);
+    }
+
+    // Can't delete from Firebase Auth
   }
 
   /**
@@ -106,7 +184,8 @@ export class AuthService {
   logout() {
     this.auth.signOut().then(
       () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('currentUser');
+        this.isAuthenticated = false;
         this.router.navigate(['/sign-in']);
       },
       (err) => {
@@ -114,37 +193,18 @@ export class AuthService {
       }
     );
   }
-
-  /**
-   * Checks users current state.
-   */
-  check(): boolean {
-    this.auth.onAuthStateChanged((user) => {
-        if (user) {
-            // User Signed In
-            console.log("User Signed In!!");
-            return true;
-        } else {
-            // User is signed out
-            console.log("User Signed out!!");
-            // ...
-            return false;
-        }
-    });
-    return false;
-  }
 }
 
 type Login = {
-  email: string,
-  password: string 
-}
+  email: string;
+  password: string;
+};
 
 type Register = {
-  displayName: string,
-  email: string,
-  password: string,
-  firstName: string,
-  lastName: string
-}
-
+  displayName: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+};

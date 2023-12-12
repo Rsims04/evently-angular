@@ -1,0 +1,190 @@
+.mdc-dialog__surface {
+  border-radius: 20px !important;
+  padding: 50px 100px 50px 100px;
+  width: 50vw;
+}
+
+//
+.form-set {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-account-details {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.create-account-details label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*
+  INPUTS
+*/
+
+.create-account-details input {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 20px 5px 20px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-account-details input:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.create-account-details .is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 0.5em;
+  margin-bottom: 0em;
+  text-align: center;
+  font-size: 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#CreateHeading {
+  // margin-bottom: 1em;
+}
+
+.create_account_Button {
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.loadingButton {
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}
+
+//
+.form-container {
+  padding-bottom: 1em;
+}
+
+.form-container label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-details {
+  margin: 0 auto;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+select {
+  // margin: 0 auto;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  // padding: 12px 30px 12px 30px;
+  text-align: center;
+}
+
+select:hover {
+  border-bottom: 2px solid #8011e2;
+  cursor: pointer;
+}
+
+/*
+  INPUTS
+*/
+
+.form-details input {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 20px 5px 20px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-details input:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.loadingButton {
+  float: left;
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}
+
+/* 
+    GRID STUFF 
+*/
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+}
+
+.th,
+.td {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 15px;
+  height: 60%;
+}
+
+.th {
+  font-weight: bold;
+  border-bottom: 1px solid rgba(109, 65, 153, 1);
+}
+
+.td:nth-child(3) {
+  text-align: right;
+}
+
+.fa-trash-can {
+  color: #6d4199;
+}
+
+.fa-trash-can:hover {
+  color: red;
+  cursor: pointer;
+  transition: ease all 0.3s;
+}
+
+.create-account-details select {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 85px 5px 85px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-account-details select:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.delete_user_button:hover {
+  border-color: red;
+  color: red;
+}

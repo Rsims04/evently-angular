@@ -2,52 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
-import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore';
-import { ProfileDialogComponent, ProfileDialogResult } from './profile-dialog/profile-dialog.component';
+import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit  {
+export class ProfileComponent implements OnInit {
   constructor(
     private db: Firestore,
-    private dialog: MatDialog
-    ){}
+    private dialog: MatDialog,
+    private userService: UserService
+  ) {}
 
   user: User = {} as User;
-  userData: any = {};
+  userData$: any = {};
 
   ngOnInit(): void {
-      // Check if user is logged in and grab current user.
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          this.user = user;
-          this.getCurrentUserData();
-        } else {
-          // ...
-        }
-      });
+    // Check if user is logged in and grab current user.
+    const auth = getAuth();
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        this.user = user;
+        // this.userData$
+        let subscribe = (await this.userService.getCurrentUserData()).subscribe(
+          (data) => {
+            this.userData$ = data;
+          }
+        );
+      } else {
+        console.log('Error: user is null...');
+      }
+    });
   }
-
-  /**
-   * Gets the current users information.
-   */
-  async getCurrentUserData() {
-    if (this.user !== null) {
-          console.log(this.user.uid);
-          const q = query(collection(this.db, 'User'), where('uid', '==', this.user.uid));
-          const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-            await getDocs(q);
-            this.userData = querySnapshot.docs[0].data();
-          });
-      console.log(this.userData);
-    } else {
-      console.log("ok");
-    }
-  } 
 
   /**
    * Opens modal and sends correct field information.
@@ -57,9 +46,8 @@ export class ProfileComponent implements OnInit  {
       panelClass: 'custom-dialog-class',
       data: {
         field,
-        fieldName
+        fieldName,
       },
     });
   }
 }
-
