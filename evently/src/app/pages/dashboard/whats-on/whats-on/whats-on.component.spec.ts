@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThisWeekComponent } from './whats-on.component';
+import { WhatsOnComponent } from './whats-on.component';
 
-describe('ThisWeekComponent', () => {
-  let component: ThisWeekComponent;
-  let fixture: ComponentFixture<ThisWeekComponent>;
+describe('WhatsOnComponent', () => {
+  let component: WhatsOnComponent;
+  let fixture: ComponentFixture<WhatsOnComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ThisWeekComponent],
+      declarations: [WhatsOnComponent],
     });
-    fixture = TestBed.createComponent(ThisWeekComponent);
+    fixture = TestBed.createComponent(WhatsOnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
