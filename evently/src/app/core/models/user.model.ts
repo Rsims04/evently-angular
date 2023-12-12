@@ -5,4 +5,5 @@ export interface appUser {
   photoURL?: string;
   firstName?: string;
   lastName?: string;
+  role?: string;
 }

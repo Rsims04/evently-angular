@@ -1,0 +1,91 @@
+<!-- Modal Add User -->
+<div *ngIf="data.field == 'addUser'; else isDelete">
+  <form [formGroup]="form" (ngSubmit)="addUser()">
+    <h1>Create New User</h1>
+    <p>Fill out form below to create new user:</p>
+    <br />
+    <div class="form-container">
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>Username: </label><br />
+          <input type="text" formControlName="displayName" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['displayName'].errors">
+            *A Valid Username Is Required.
+          </div>
+        </div>
+
+        <div class="create-account-details">
+          <label>Email: </label><br />
+          <input type="text" formControlName="email" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['email'].errors">
+            *A Valid Email Is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>First Name: </label><br />
+          <input type="text" formControlName="firstName" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['firstName'].errors">
+            *Your First Name Is Required.
+          </div>
+        </div>
+
+        <div class="create-account-details">
+          <label>Last Name: </label><br />
+          <input type="text" formControlName="lastName" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['lastName'].errors">
+            *Your Last Name Is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>Password: </label><br />
+          <input type="password" formControlName="password" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['password'].errors">
+            *A Password Is Required.
+          </div>
+        </div>
+
+        <div class="create-account-details">
+          <label>Role: </label><br />
+          <select #select formControlName="role" required>
+            <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading == false; else currentlyLoading">
+      <button class="create_account_Button" type="submit">Add User</button>
+    </div>
+
+    <ng-template #currentlyLoading>
+      <button class="create_account_button loadingButton">
+        <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+      </button>
+    </ng-template>
+  </form>
+</div>
+
+<!-- Modal - Delete User -->
+<ng-template #isDelete>
+  <div class="form-container">
+    <h1>Delete User</h1>
+    <p id="delete_p">Are you sure you want to delete {{ userName }}?</p>
+    <br />
+    <button class="delete_user_button" (click)="deleteUser()">
+      Yes, I'm sure.
+    </button>
+  </div>
+</ng-template>

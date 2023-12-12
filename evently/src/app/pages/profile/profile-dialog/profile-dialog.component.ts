@@ -1,14 +1,8 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import {
-  Firestore,
-  collection,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { getAuth, updateEmail, updateProfile } from 'firebase/auth';
+
+import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from 'src/app/core/shared/auth.service';
 
 @Component({
   selector: 'app-profile-dialog',
@@ -25,7 +19,8 @@ export class ProfileDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ProfileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProfileDialogData,
-    private db: Firestore
+    private auth: AuthService,
+    private userService: UserService
   ) {}
 
   /**
@@ -43,46 +38,38 @@ export class ProfileDialogComponent {
    */
   async changeDetail(detail: string) {
     this.loading = true;
+    let valid = true;
 
-    console.log('Changing:', this.field, 'to', detail);
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      if (this.field === 'email') {
-        const auth = getAuth();
-        updateEmail(user, detail)
-          .then(() => {
-            // Email updated!
-            console.log('email updated to:', detail);
-          })
-          .catch((error) => {
-            // An error occurred
-            this.loading = false;
-            console.log('Error changing email: ', error.message);
-          });
-      }
-
-      const q = query(
-        collection(this.db, 'User'),
-        where('uid', '==', user.uid)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const docRef = querySnapshot.docs[0].ref;
-      console.log('DOC REF:', docRef);
-
-      await updateDoc(docRef, {
-        [this.field]: detail,
-      });
-      this.loading = false;
-      console.log('Changed:', this.field, 'to', detail);
-
-      this.dialogRef.close(this.data);
-    } else {
-      this.loading = false;
-      console.log('Failed:', this.field, 'to', detail);
+    if (this.field === 'email') {
+      // Update Authentication
+      await this.auth
+        .updateUserEmail(detail)
+        .then((res) => {
+          // Email updated!
+          console.log('2.email updated to:', detail);
+        })
+        .catch((error) => {
+          // An error occurred
+          valid = false;
+          console.log('2.Error changing email: ', error.message);
+        });
     }
+
+    if (valid) {
+      console.log('Changing:', this.field, 'to', detail);
+      // Update Database
+      await this.userService
+        .changeDetail(this.field, detail)
+        .then(() => {
+          console.log('Changed:', this.field, 'to', detail);
+          this.dialogRef.close(this.data);
+        })
+        .catch((error) => {
+          console.log('Failed:', this.field, 'to', detail);
+        });
+    }
+
+    this.loading = false;
   }
 }
 

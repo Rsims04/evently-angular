@@ -1,4 +1,3 @@
-<!-- <body onload="get_users();"> -->
 <app-header></app-header>
 
 <section>
@@ -11,75 +10,50 @@
       </div>
       <div class="right">
         <!-- Trigger/Open The Modal -->
-        <button id="add_btn">Add New User +</button>
-      </div>
-
-      <!-- Modal - Add New User -->
-      <div id="add_user_modal" class="modal">
-        <!-- Add User Modal Content -->
-        <div class="modal-content container">
-          <span class="close">&times;</span>
-          <h1>Create New User</h1>
-          <p>Fill out form below to create new user:</p>
-          <br />
-          <form onsubmit="return false;">
-            <div class="logindetails">
-              <label for="Uname">Username: </label><br />
-              <input type="text" id="Uname" name="Uname" /><br /><br />
-            </div>
-
-            <div class="logindetails">
-              <label for="emailName">E-mail: </label><br />
-              <input type="text" id="emailName" name="emailName" /><br /><br />
-            </div>
-
-            <div class="logindetails">
-              <label for="Rname">Role: </label><br />
-              <select id="Rname" name="Rame">
-                <option value="1">admin</option>
-                <option value="2">user</option>
-              </select>
-              <br /><br />
-            </div>
-
-            <div class="logindetails">
-              <label for="Pname">Password: </label><br />
-              <input type="Password" id="Pname" name="Pname" /> <br /><br />
-            </div>
-
-            <div class="logindetails">
-              <label for="Pname">Confirm Password: </label><br />
-              <input type="Password" id="confirmPname" name="Pname" />
-              <br /><br />
-            </div>
-
-            <button class="add_user_button" onclick="create_user();">
-              Add User
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal - Delete User -->
-    <div id="delete_user_modal" class="modal">
-      <!-- Add Delete Modal Content -->
-      <div class="modal-content container">
-        <span class="close">&times;</span>
-        <h1>Delete User</h1>
-        <p id="delete_p">Are you sure you want to delete</p>
-        <br />
-        <button class="delete_user_button">Yes, I'm sure.</button>
+        <button id="add_btn" (click)="openModal('addUser')">
+          Add New User +
+        </button>
       </div>
     </div>
 
     <!-- This is the grid to display users -->
-    <div id="grid" class="user_grid">
-      <div class="th">Username</div>
+    <div id="grid">
+      <div class="th">User</div>
       <div class="th">Role</div>
       <div class="th"></div>
       <div class="th"></div>
       <div class="th"></div>
+    </div>
+    <div id="grid" class="user_grid" *ngFor="let item of users$ | async">
+      <div class="td">
+        <img class="thumbnail" src="{{ item.photoURL }}" />
+        {{ item.displayName }}
+      </div>
+      <div class="td">
+        {{ item.role }}
+      </div>
+      <div class="td" id="select_div">
+        <select #select (change)="onSelected(select.value)">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option selected disabled hidden>Select an option</option>
+        </select>
+      </div>
+      <div class="td" id="btn_div">
+        <button
+          class="save_button"
+          (click)="changeRole(select.value, item.uid)"
+        >
+          Save
+        </button>
+      </div>
+      <div class="td" id="delete_div">
+        <fa-icon
+          [icon]="faTrash"
+          class="fa-solid fa-trash-can"
+          (click)="openModal('deleteUser', item.displayName, item.uid)"
+        ></fa-icon>
+      </div>
     </div>
 
     <hr class="rounded" />
