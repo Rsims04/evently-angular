@@ -1,11 +1,27 @@
 <app-header></app-header>
 <section>
-  <div class="eventHeader">
+  <!-- <div class="eventHeader">
     <p id="addEvent">+ Add Event</p>
+  </div> -->
+  <div class="container wide">
+    <h1>Dashboard</h1>
+    <hr />
+    <div class="dashboard">
+      <div class="side-menu">
+        <nav class="menu">
+          <a class="menu-item" routerLink="whats-on">What's On</a>
+          <a class="menu-item" routerLink="my-events">My Events</a>
+          <a class="menu-item" routerLink="calendar">Calendar</a>
+        </nav>
+      </div>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 
-  <div class="container main">
-    <p>#INSERT GOOGLE CALENDAR API HERE</p>
-  </div>
+  <!-- <div class="container main">
+    <p>#EVENTS HERE</p>
+  </div> -->
 </section>
 <app-footer></app-footer>
