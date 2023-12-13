@@ -1,5 +1,9 @@
-<h2>What's On</h2>
-<p>Events on this week.</p>
+<div class="title-container">
+  <div class="title-wrapper">
+    <h2 class="title">Events on this week.</h2>
+    <p>Browse events below.</p>
+  </div>
+</div>
 <div class="grid">
   <div class="event" *ngFor="let event of events$ | async">
     <img src="{{ event.photoURL }}" alt="Placeholder" />
@@ -10,6 +14,7 @@
       <b>{{ event.dayOfTheWeek }}</b>
       <p>{{ event.date }}</p>
       <p>Author: {{ event.author }}</p>
+      <p>Genre: {{ event.genre }}</p>
       <p>
         {{ event.description }}
       </p>
