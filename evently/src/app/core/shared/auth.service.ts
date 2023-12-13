@@ -10,10 +10,9 @@ import {
   addDoc,
   collection,
   deleteDoc,
-  doc,
 } from '@angular/fire/firestore';
-import { User, getAuth, updateEmail } from 'firebase/auth';
-import { Observable, of } from 'rxjs';
+import { User, updateEmail } from 'firebase/auth';
+import { Observable } from 'rxjs';
 import { appUser } from '../models/user.model';
 import { UserService } from '../services/user.service';
 import { getDocs, onSnapshot, query, where } from 'firebase/firestore';
@@ -175,7 +174,7 @@ export class AuthService {
       console.log('Failed to delete:', uid);
     }
 
-    // Can't delete from Firebase Auth
+    // Can't delete from Firebase Auth - This is a Firebase problem - Needs Admin SDK - ** Deal with this later.
   }
 
   /**

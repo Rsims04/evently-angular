@@ -7,7 +7,8 @@ import { CalendarComponent } from './calendar/calendar/calendar.component';
 const routes: Routes = [
   {
     path: '',
-    component: WhatsOnComponent,
+    redirectTo: 'whats-on',
+    pathMatch: 'full',
   },
   {
     path: 'whats-on',

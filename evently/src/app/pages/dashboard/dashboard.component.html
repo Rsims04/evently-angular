@@ -4,14 +4,39 @@
     <p id="addEvent">+ Add Event</p>
   </div> -->
   <div class="container wide">
-    <h1>Dashboard</h1>
-    <hr />
+    <div class="top-bar-wrapper">
+      <div class="top-bar-left">
+        <h1 style="font-size: 1.2em">
+          Dashboard - Hello, {{ user.displayName }}!
+        </h1>
+      </div>
+      <div class="top-bar-left">
+        <button>Add New Event +</button>
+      </div>
+    </div>
+
+    <hr style="height: 3px; background-color: #525252; border: none" />
     <div class="dashboard">
       <div class="side-menu">
         <nav class="menu">
-          <a class="menu-item" routerLink="whats-on">What's On</a>
-          <a class="menu-item" routerLink="my-events">My Events</a>
-          <a class="menu-item" routerLink="calendar">Calendar</a>
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="whats-on"
+            >What's On</a
+          >
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="my-events"
+            >My Events</a
+          >
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="calendar"
+            >Calendar</a
+          >
         </nav>
       </div>
       <div class="content">
