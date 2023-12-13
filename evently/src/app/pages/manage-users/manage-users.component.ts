@@ -3,7 +3,7 @@ import { ManageUsersDialogComponent } from './manage-users-dialog/manage-users-d
 import { MatDialog } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
-import { BehaviorSubject, Observable, Subject, from, takeWhile } from 'rxjs';
+import { Observable } from 'rxjs';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,11 +18,8 @@ export class ManageUsersComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private userService: UserService) {}
 
-  async ngOnInit(): Promise<void> {
-    this.users$ = await this.userService.getUsers();
-    this.users$.subscribe((data) => {
-      console.log(data);
-    });
+  ngOnInit() {
+    this.users$ = this.userService.getUsers();
   }
 
   /**

@@ -26,6 +26,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
 import { ManageUsersDialogComponent } from './pages/manage-users/manage-users-dialog/manage-users-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserService } from './core/services/user.service';
+import { EventService } from './core/services/event.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatProgressSpinnerModule,
     FontAwesomeModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService, EventService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

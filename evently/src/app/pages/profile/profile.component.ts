@@ -11,11 +11,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(
-    private db: Firestore,
-    private dialog: MatDialog,
-    private userService: UserService
-  ) {}
+  constructor(private dialog: MatDialog, private userService: UserService) {}
 
   user: User = {} as User;
   userData$: any = {};
