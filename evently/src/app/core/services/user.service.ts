@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { appUser } from '../models/user.model';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import {
-  collection,
   getDocs,
   onSnapshot,
   query,
   updateDoc,
   where,
 } from 'firebase/firestore';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,21 @@ export class UserService {
   currentUser: appUser | null;
   users$: Observable<appUser[]> | null;
 
-  constructor(private db: Firestore) {}
+  constructor(private db: Firestore) {
+    const data = collection(db, 'User');
+    this.users$ = collectionData(data);
+  }
+
+  /**
+   * Gets a list of all events.
+   */
+  getUsers() {
+    return this.users$.pipe(
+      map((users) =>
+        users.sort((a, b) => a.displayName.localeCompare(b.displayName))
+      )
+    );
+  }
 
   /**
    * Set the current user in local storage for easy access.
@@ -33,30 +46,6 @@ export class UserService {
    */
   getUser() {
     return JSON.parse(localStorage.getItem('currentUser'));
-  }
-
-  /**
-   * Gets a list of all users.
-   */
-  getUsers(): Observable<appUser[]> {
-    let userList = [];
-    console.log('get users...');
-    const q = query(collection(this.db, 'User'));
-    return new Observable((observer) => {
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        userList = [];
-        querySnapshot.forEach((doc) => {
-          userList.push(doc.data());
-
-          // Sort by display Name
-          userList.sort((a, b) => a.displayName.localeCompare(b.displayName));
-        });
-        observer.next(userList);
-      });
-      return () => {
-        unsubscribe();
-      };
-    });
   }
 
   /**
