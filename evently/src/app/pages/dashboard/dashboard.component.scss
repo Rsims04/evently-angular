@@ -138,3 +138,35 @@
   padding: 1px;
   color: white;
 }
+
+.sort-container {
+  padding: 10px;
+}
+.sort {
+  color: white;
+  padding: 3px;
+}
+
+.sort-button {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  background-color: transparent !important;
+  border: none;
+  align-items: center;
+}
+
+.sort-button:hover {
+  background-color: transparent;
+}
+
+.hr-sort {
+  flex-grow: 1;
+  margin-right: 10px;
+  height: 1px;
+  background-color: #d8d8d8;
+  border: None;
+  padding: 0;
+  margin: auto;
+  margin-right: 1rem;
+}

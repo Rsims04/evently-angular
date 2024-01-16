@@ -8,6 +8,7 @@ import { MyEventsComponent } from './my-events/my-events/my-events.component';
 import { CalendarComponent } from './calendar/calendar/calendar.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
+
 @NgModule({
   declarations: [WhatsOnComponent, MyEventsComponent, CalendarComponent],
   imports: [
@@ -18,4 +19,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     MatProgressSpinnerModule,
   ],
 })
-export class DashboardModule {}
+export class DashboardModule {
+  
+}
