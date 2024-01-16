@@ -1,51 +1,22 @@
-<div class="title-container">
-  <div class="title-wrapper">
-    <h2 class="title">Events on this week.</h2>
-    <p>Browse events below.</p>
-  </div>
-</div>
-<div class="grid">
-  <div class="event" *ngFor="let event of events$ | async">
+<div class="event-container event2" *ngFor="let event of events$ | async">
+  <div class="img-container">
     <img src="{{ event.photoURL }}" alt="Placeholder" />
-    <div class="info">
-      <h4>
+  </div>
+  <div class="info">
+    <div class="info-left">
+      <b class="date">{{ event.dayOfTheWeek }} {{ event.date }}</b>
+      <h2 class="title">
         <b>{{ event.title }}</b>
-      </h4>
-      <b>{{ event.dayOfTheWeek }}</b>
-      <p>{{ event.date }}</p>
-      <p>Author: {{ event.author }}</p>
-      <p>Genre: {{ event.genre }}</p>
-      <p>
-        {{ event.description }}
-      </p>
+      </h2>
+      <p class="details">by {{ event.author }}</p>
+    </div>
+    <div class="info-right">
+      <p class="details genre">{{ event.genre }}</p>
     </div>
   </div>
-  <div class="event">
-    <img src="../../../../../assets/placeholder.png" alt="Placeholder" />
-    <div class="info">
-      <h4><b>TITLE: Event 1</b></h4>
-      <p>Date-time: 7pm, 11 Nov 2023</p>
-      <p>Author: Anon</p>
-      <p>
-        Description: This is an event that is at a place somewhere and here is
-        what happens at the event.
-      </p>
-    </div>
-  </div>
-  <div class="event">
-    <img src="../../../../../assets/placeholder.png" alt="Placeholder" />
-    <div class="info">
-      <h4><b>TITLE: Event 2</b></h4>
-      <p>Date-time: 7pm, 11 Nov 2023</p>
-      <p>Author: Anon</p>
-    </div>
-  </div>
-  <div class="event">
-    <img src="../../../../../assets/placeholder.png" alt="Placeholder" />
-    <div class="info">
-      <h4><b>TITLE: Event 3</b></h4>
-      <p>Date-time: 7pm, 11 Nov 2023</p>
-      <p>Author: Anon</p>
-    </div>
+  <div class="info">
+    <p class="description">
+      {{ event.description }}
+    </p>
   </div>
 </div>

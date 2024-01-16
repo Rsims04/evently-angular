@@ -1,52 +1,40 @@
 <app-header></app-header>
 <section>
-  <!-- <div class="eventHeader">
-    <p id="addEvent">+ Add Event</p>
-  </div> -->
-  <div class="container wide">
-    <div class="top-bar-wrapper">
-      <div class="top-bar-left">
-        <h1 style="font-size: 1.2em">
-          Dashboard - Hello, {{ user.displayName }}!
-        </h1>
-      </div>
-      <div class="top-bar-left">
-        <button>Add New Event +</button>
-      </div>
-    </div>
+  <div class="dashboard-section">
+    <div class="dashboard-container dashboard-left">
+      <img class="thumbnail" src="{{ user.photoURL }}" />
+      <p>
+        <b>Hello, {{ user.displayName }}!</b>
+      </p>
+      <hr style="height: 3px; background-color: #525252; border: none" />
 
-    <hr style="height: 3px; background-color: #525252; border: none" />
-    <div class="dashboard">
-      <div class="side-menu">
-        <nav class="menu">
-          <a
-            class="menu-item"
-            routerLinkActive="active-item"
-            routerLink="whats-on"
-            >What's On</a
-          >
-          <a
-            class="menu-item"
-            routerLinkActive="active-item"
-            routerLink="my-events"
-            >My Events</a
-          >
-          <a
-            class="menu-item"
-            routerLinkActive="active-item"
-            routerLink="calendar"
-            >Calendar</a
-          >
-        </nav>
-      </div>
-      <div class="content">
-        <router-outlet></router-outlet>
-      </div>
+      <nav class="menu">
+        <a
+          class="menu-item2"
+          routerLinkActive="active-item"
+          routerLink="whats-on"
+          >What's On</a
+        >
+        <a
+          class="menu-item2"
+          routerLinkActive="active-item"
+          routerLink="my-events"
+          >My Events</a
+        >
+        <a
+          class="menu-item2"
+          routerLinkActive="active-item"
+          routerLink="calendar"
+          >Calendar</a
+        >
+      </nav>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="dashboard-container dashboard-right">
+      <button>New Event +</button>
     </div>
   </div>
-
-  <!-- <div class="container main">
-    <p>#EVENTS HERE</p>
-  </div> -->
 </section>
 <app-footer></app-footer>
