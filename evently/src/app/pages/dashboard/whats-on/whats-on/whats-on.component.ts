@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { appEvent } from 'src/app/core/models/event.model';
 import { EventService } from 'src/app/core/services/event.service';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-this-week',
@@ -10,6 +11,7 @@ import { EventService } from 'src/app/core/services/event.service';
 })
 export class WhatsOnComponent {
   events$: Observable<appEvent[]> | null;
+  faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(private eventService: EventService) {}
 

@@ -28,6 +28,7 @@ import { ManageUsersDialogComponent } from './pages/manage-users/manage-users-di
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserService } from './core/services/user.service';
 import { EventService } from './core/services/event.service';
+import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.component';
 
 @NgModule({
   declarations: [

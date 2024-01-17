@@ -4,22 +4,26 @@
   </div>
   <div class="info">
     <div class="info-left">
-      <b class="date"
-        >{{ event.dayOfTheWeek }} {{ event.date }}, {{ event.location }}</b
-      >
+      <span>
+        <b class="date">{{ event.dayOfTheWeek }} {{ event.date }}</b>
+        <span *ngIf="event.location" class="location">
+          <fa-icon [icon]="faMapMarkerAlt" class="fa-solid fa-map-marker">
+          </fa-icon>
+          {{ event.location }}
+        </span>
+      </span>
+
       <h2 class="title">
         <b>{{ event.title }}</b>
       </h2>
       <p class="details">by {{ event.author }}</p>
+      <p class="description">
+        {{ event.description | slice : 0 : 200
+        }}<span *ngIf="event.description.length > 200">...</span>
+      </p>
     </div>
     <div class="info-right">
       <p class="details genre">{{ event.genre }}</p>
-      <p class="details">{{ event.location }}</p>
     </div>
-  </div>
-  <div class="info">
-    <p class="description">
-      {{ event.description }}
-    </p>
   </div>
 </div>

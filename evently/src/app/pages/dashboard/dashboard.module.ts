@@ -7,7 +7,7 @@ import { WhatsOnComponent } from './whats-on/whats-on/whats-on.component';
 import { MyEventsComponent } from './my-events/my-events/my-events.component';
 import { CalendarComponent } from './calendar/calendar/calendar.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [WhatsOnComponent, MyEventsComponent, CalendarComponent],
@@ -17,8 +17,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule,
   ],
 })
-export class DashboardModule {
-  
-}
+export class DashboardModule {}
