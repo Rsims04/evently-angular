@@ -4,7 +4,8 @@ export interface appEvent {
   description?: string;
   date?: Date;
   dayOfTheWeek?: String;
-  genre?: String;
+  genre?: string;
   author?: String;
   photoURL?: string;
+  location?: string;
 }

@@ -1,4 +1,4 @@
-<div class="event-container " *ngFor="let event of events$ | async">
+<div class="event-container" *ngFor="let event of events$ | async">
   <div class="img-container">
     <img src="{{ event.photoURL }}" alt="Placeholder" />
   </div>
@@ -12,6 +12,7 @@
     </div>
     <div class="info-right">
       <p class="details genre">{{ event.genre }}</p>
+      <p class="details">{{ event.location }}</p>
     </div>
   </div>
   <div class="info">
