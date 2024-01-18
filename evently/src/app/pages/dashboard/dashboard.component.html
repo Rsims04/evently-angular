@@ -1,39 +1,77 @@
 <app-header></app-header>
 <section>
   <div class="dashboard-section">
-    <div class="dashboard-container dashboard-left">
-      <img class="thumbnail" src="{{ user.photoURL }}" />
-      <p>
-        <b>Hello, {{ user.displayName }}!</b>
-      </p>
-      <hr style="height: 3px; background-color: #525252; border: none" />
+    <div class="dashboard-left">
+      <div class="dashboard-container">
+        <img class="thumbnail" src="{{ user.photoURL }}" />
+        <p>
+          <b>Hello, {{ user.displayName }}!</b>
+        </p>
+        <hr style="height: 3px; background-color: #525252; border: none" />
 
-      <nav class="menu">
-        <a
-          class="menu-item2"
-          routerLinkActive="active-item"
-          routerLink="whats-on"
-          >What's On</a
-        >
-        <a
-          class="menu-item2"
-          routerLinkActive="active-item"
-          routerLink="my-events"
-          >My Events</a
-        >
-        <a
-          class="menu-item2"
-          routerLinkActive="active-item"
-          routerLink="calendar"
-          >Calendar</a
-        >
-      </nav>
+        <nav class="menu">
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="whats-on"
+            >What's On</a
+          >
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="my-events"
+            >My Events</a
+          >
+          <a
+            class="menu-item"
+            routerLinkActive="active-item"
+            routerLink="calendar"
+            >Calendar</a
+          >
+        </nav>
+      </div>
+      <div class="dashboard-container">
+        <button class="create-button">
+          Add Event
+          <fa-icon
+            [icon]="faCalendarPlus"
+            class="fa-solid fa-calendar-plus-o"
+            (click)="dropDownMenu()"
+          ></fa-icon>
+        </button>
+      </div>
     </div>
     <div>
+      <div class="sort-container">
+        <button class="sort-button sort-flex">
+          <hr class="hr-sort" />
+          <span class="sort">
+            <p>Sort</p>
+          </span>
+          <span class="sort">
+            <fa-icon
+              [icon]="faCaretDown"
+              class="fa-solid fa-caret-down"
+              (click)="dropDownMenu()"
+            ></fa-icon>
+          </span>
+        </button>
+      </div>
       <router-outlet></router-outlet>
     </div>
-    <div class="dashboard-container dashboard-right">
-      <button>New Event +</button>
+    <div class="dashboard-right">
+      <div class="dashboard-container">
+        <form class="search inline">
+          <input type="text" />
+          <button>
+            <fa-icon
+              [icon]="faMagnifyingGlass"
+              class="fa-solid fa-magnifying-glass"
+              (click)="dropDownMenu()"
+            ></fa-icon>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </section>

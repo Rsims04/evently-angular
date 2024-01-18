@@ -14,8 +14,10 @@
 }
 
 .header_wrapper {
+  margin: auto;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  max-width: 80%;
 }
 
 .logo {
@@ -28,10 +30,12 @@
 }
 
 .header_left {
+  margin-left: 1em;
   text-align: left;
 }
 
 .header_right {
+  margin-right: 1em;
   display: flex;
   justify-content: flex-end;
   text-align: right;
