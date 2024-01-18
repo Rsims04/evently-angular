@@ -19,12 +19,14 @@
       (click)="editDetail('photoURL', 'Profile Image')"
     >
       <div class="tooltip top">Edit Profile Image</div>
-      <img
-        src="{{ userData$?.photoURL }}"
-        alt="profile image"
-        class="profile_image"
-        id="u_img"
-      />
+      <div class="image-container">
+        <img
+          src="{{ userData$?.photoURL }}"
+          alt="profile image"
+          class="profile_image"
+          id="u_img"
+        />
+      </div>
     </div>
 
     <h2>Email</h2>
