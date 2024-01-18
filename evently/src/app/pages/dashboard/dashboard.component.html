@@ -31,7 +31,14 @@
         </nav>
       </div>
       <div class="dashboard-container">
-        <button>New Event +</button>
+        <button class="create-button">
+          Add Event
+          <fa-icon
+            [icon]="faCalendarPlus"
+            class="fa-solid fa-calendar-plus-o"
+            (click)="dropDownMenu()"
+          ></fa-icon>
+        </button>
       </div>
     </div>
     <div>
@@ -56,7 +63,13 @@
       <div class="dashboard-container">
         <form>
           <input />
-          <button>Search</button>
+          <button>
+            <fa-icon
+              [icon]="faMagnifyingGlass"
+              class="fa-solid fa-magnifying-glass"
+              (click)="dropDownMenu()"
+            ></fa-icon>
+          </button>
         </form>
       </div>
     </div>

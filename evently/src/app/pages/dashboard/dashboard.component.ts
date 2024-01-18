@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { appUser } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCaretDown,
+  faMagnifyingGlass,
+  faCalendarPlus,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +15,8 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 export class DashboardComponent {
   user: appUser;
   faCaretDown = faCaretDown;
+  faMagnifyingGlass = faMagnifyingGlass;
+  faCalendarPlus = faCalendarPlus;
 
   constructor(private userService: UserService) {}
 
