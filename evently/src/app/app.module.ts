@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { AuthService } from './core/shared/auth.service';
 
@@ -29,6 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserService } from './core/services/user.service';
 import { EventService } from './core/services/event.service';
 import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.component';
+import { ImageUploadComponent } from './core/components/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.c
     ModalComponent,
     ProfileDialogComponent,
     ManageUsersDialogComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.c
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
