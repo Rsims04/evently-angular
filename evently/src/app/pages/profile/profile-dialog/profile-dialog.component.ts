@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/core/shared/auth.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class ProfileDialogComponent {
+  pageName: string = 'profile';
   field: string = this.data.field;
   fieldName: string = this.data.fieldName;
   detail: string;
@@ -70,6 +71,14 @@ export class ProfileDialogComponent {
     }
 
     this.loading = false;
+  }
+
+  imageUploadStatus(value: boolean) {
+    if (value === true) {
+      this.dialogRef.close(this.data);
+    } else {
+      console.log('ERROR: image upload failed - ', value);
+    }
   }
 }
 
