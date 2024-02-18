@@ -72,6 +72,14 @@ export class ProfileDialogComponent {
 
     this.loading = false;
   }
+
+  imageUploadStatus(value: boolean) {
+    if (value === true) {
+      this.dialogRef.close(this.data);
+    } else {
+      console.log('ERROR: image upload failed - ', value);
+    }
+  }
 }
 
 export interface ProfileDialogData {

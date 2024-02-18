@@ -18,5 +18,8 @@
   </ng-template>
 </div>
 <ng-template #isPhoto
-  ><app-image-upload [currentPage]="pageName"></app-image-upload
+  ><app-image-upload
+    [currentPage]="pageName"
+    (imageUploadEvent)="imageUploadStatus($event)"
+  ></app-image-upload
 ></ng-template>

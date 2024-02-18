@@ -1,4 +1,4 @@
-<div class="form-group col-12">
+<div *ngIf="loading == false; else currentlyLoading">
   <input
     type="file"
     id="file"
@@ -10,3 +10,8 @@
   />
   <button (click)="addData()">Upload Image</button>
 </div>
+<ng-template #currentlyLoading>
+  <button class="create_account_button loadingButton">
+    <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+  </button>
+</ng-template>
