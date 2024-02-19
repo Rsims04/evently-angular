@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'firebase/auth';
-import { Observable } from 'rxjs';
-import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/shared/auth.service';
 
 @Component({
@@ -18,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
@@ -55,8 +51,10 @@ export class LoginComponent implements OnInit {
       })
       .then(
         (res) => {
-          console.log('LOGIN RES:', res);
-          this.router.navigate(['/dashboard']);
+          setTimeout(() => {
+            console.log('LOGIN RES:', res);
+            this.router.navigate(['/dashboard']);
+          }, 3000);
         },
         (err) => {
           console.log(err);

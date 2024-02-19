@@ -16,6 +16,7 @@ import { Observable, map } from 'rxjs';
 export class UserService {
   currentUser: appUser | null;
   users$: Observable<appUser[]> | null;
+  user$: Observable<appUser> | null;
 
   constructor(private db: Firestore) {
     const data = collection(db, 'User');
@@ -38,6 +39,10 @@ export class UserService {
    */
   setUser(user: appUser) {
     this.currentUser = user;
+    console.log(
+      'USER SERVICE to Local Storage:SET currentUser to:',
+      JSON.stringify(this.currentUser)
+    );
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
@@ -53,6 +58,7 @@ export class UserService {
    */
   async getCurrentUserData() {
     let user = this.getUser();
+    console.log('USER ~~~ In get current user data:', user);
     if (user !== null) {
       const q = query(
         collection(this.db, 'User'),
@@ -69,7 +75,7 @@ export class UserService {
         };
       });
     } else {
-      console.log('Error: user is null...');
+      console.log('GET CURRENT USER DATA~Error: user is null...');
       return null;
     }
   }

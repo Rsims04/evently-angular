@@ -6,6 +6,7 @@ import {
   faMagnifyingGlass,
   faCalendarPlus,
 } from '@fortawesome/free-solid-svg-icons';
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,15 +14,16 @@ import {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  user: appUser;
+  user = {} as appUser;
   faCaretDown = faCaretDown;
   faMagnifyingGlass = faMagnifyingGlass;
   faCalendarPlus = faCalendarPlus;
 
   constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
-    this.user = this.userService.currentUser;
+  ngOnInit() {
+    this.user = this.userService.getUser();
+    console.log('this.USER:', this.user);
   }
 
   /**

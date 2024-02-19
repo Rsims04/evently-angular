@@ -11,7 +11,7 @@ import {
   collection,
   deleteDoc,
 } from '@angular/fire/firestore';
-import { User, updateEmail } from 'firebase/auth';
+import { User, getAuth, updateEmail } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { appUser } from '../models/user.model';
 import { UserService } from '../services/user.service';
@@ -29,16 +29,16 @@ export class AuthService {
     private userService: UserService,
     private router: Router,
     private db: Firestore
-  ) {
-    this.getDataFromFirebase();
-  }
+  ) {}
 
   /**
    * Authenticates and gets the current users data from Firebase.
    * Also adds it to localstorage.
    */
   getDataFromFirebase() {
+    this.auth = getAuth();
     this.auth.onAuthStateChanged(async (user) => {
+      console.log('GET DATA FROM FIREBASE: ', user);
       if (user) {
         console.log('logged in', user.uid);
         try {
@@ -53,16 +53,16 @@ export class AuthService {
                 console.log('user found:', this.user);
                 this.userService.setUser(this.user);
               } catch (e) {
-                console.log('user not found...');
+                console.log('GET DOCS~user not found...');
                 this.logout();
               }
             });
           });
         } catch (e) {
-          console.log('User is null...');
+          console.log('QUERY~User is null...');
         }
       } else {
-        console.log('User is null...');
+        console.log('IF USER~User is null...');
       }
     });
   }
@@ -77,10 +77,10 @@ export class AuthService {
       signInWithEmailAndPassword(this.auth, params.email, params.password).then(
         (res) => {
           this.isAuthenticated = true;
+          this.getDataFromFirebase();
           resolve(res);
         },
         (err) => {
-          console.log(err);
           reject(err);
         }
       );
@@ -105,7 +105,6 @@ export class AuthService {
           resolve(res);
         },
         (err) => {
-          console.log(err);
           reject(err);
         }
       );
@@ -180,10 +179,11 @@ export class AuthService {
   /**
    * Log out user.
    */
-  logout() {
-    this.auth.signOut().then(
+  async logout() {
+    await this.auth.signOut().then(
       () => {
         localStorage.removeItem('currentUser');
+        this.userService.currentUser = null;
         this.isAuthenticated = false;
         this.router.navigate(['/sign-in']);
       },
