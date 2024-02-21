@@ -1,0 +1,91 @@
+<!-- Modal Add User -->
+<div>
+  <form [formGroup]="form" (ngSubmit)="createEvent()">
+    <h1>Create New Event</h1>
+    <p>Fill out form below to create a new event:</p>
+    <br />
+    <div class="form-container">
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>Title: </label><br />
+          <input type="text" formControlName="title" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['title'].errors">
+            *Please input a title.
+          </div>
+        </div>
+
+        <div class="create-account-details">
+          <label>description: </label><br />
+          <input type="text" formControlName="description" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['description'].errors">
+            *Please input a description.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>Date: </label><br />
+          <input type="text" formControlName="date" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['date'].errors">
+            *Please input a date.
+          </div>
+        </div>
+
+        <!-- THIS NEEDS TO BE SELECT -->
+        <div class="create-account-details">
+          <label>Type: </label><br />
+          <select #select formControlName="genre" required>
+            <option value="Event" selected>Event</option>
+            <option value="Art">Art</option>
+            <option value="Festival">Festival</option>
+            <option value="Food">Food</option>
+            <option value="Function">Function</option>
+            <option value="Holiday">Holiday</option>
+            <option value="Music">Music</option>
+            <option value="Networking">Networking</option>
+            <option value="Party">Party</option>
+          </select>
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['genre'].errors">
+            *Please Select a type.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-set">
+        <div class="create-account-details">
+          <label>Location: </label><br />
+          <input type="text" formControlName="location" required />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['location'].errors">
+            *A enter a location.
+          </div>
+        </div>
+
+        <!-- Photo Upload -->
+        <div class="create-account-details">
+          <label>Image Upload: </label><br />
+          <app-image-upload
+            [currentPage]="pageName"
+            (imageEventUploadEvent)="imageUploadStatus($event)"
+          ></app-image-upload>
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading == false; else currentlyLoading">
+      <button class="create_account_Button" type="submit">Add Event</button>
+    </div>
+
+    <ng-template #currentlyLoading>
+      <button class="create_account_button loadingButton">
+        <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+      </button>
+    </ng-template>
+  </form>
+</div>

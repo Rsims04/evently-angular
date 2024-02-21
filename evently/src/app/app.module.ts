@@ -31,6 +31,7 @@ import { UserService } from './core/services/user.service';
 import { EventService } from './core/services/event.service';
 import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.component';
 import { ImageUploadComponent } from './core/components/image-upload/image-upload.component';
+import { AddEventDialogComponent } from './pages/dashboard/whats-on/whats-on/add-event-dialog/add-event-dialog/add-event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ImageUploadComponent } from './core/components/image-upload/image-uploa
     ProfileDialogComponent,
     ManageUsersDialogComponent,
     ImageUploadComponent,
+    AddEventDialogComponent,
   ],
   imports: [
     BrowserModule,
