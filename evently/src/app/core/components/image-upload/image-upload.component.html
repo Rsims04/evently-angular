@@ -8,15 +8,19 @@
     autocomplete="off"
     accept=".png,.jpg"
   />
-  <button *ngIf="currentPage == 'profile'" (click)="addData()">
+  <button class="button" *ngIf="currentPage == 'profile'" (click)="addData()">
     Upload Image
   </button>
-  <button *ngIf="currentPage == 'event'" (click)="addDataEvent()">
+  <button
+    class="button"
+    *ngIf="currentPage == 'event'"
+    (click)="addDataEvent()"
+  >
     Upload Image
   </button>
 </div>
 <ng-template #currentlyLoading>
-  <button class="create_account_button loadingButton">
+  <button class="button create_account_button loadingButton">
     <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
   </button>
 </ng-template>

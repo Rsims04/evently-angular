@@ -5,7 +5,10 @@
   <div class="info">
     <div class="info-left">
       <span>
-        <b class="date">{{ event.dayOfTheWeek }} {{ event.date }}</b>
+        <b class="date">{{ event.dayOfTheWeek }} {{ event.startDate }}</b>
+      </span>
+      <span *ngIf="event.startDate != event.endDate">
+        <b class="date"> - {{ event.endDate }}</b>
       </span>
       <span *ngIf="event.location" class="location">
         <fa-icon [icon]="faMapMarkerAlt" class="fa-solid fa-map-marker">

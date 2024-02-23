@@ -23,11 +23,11 @@
   <div class="loginButtons">
     <a routerLink="create-account" id="CreateAccount">Create Account</a>
     <div *ngIf="loading == false; else currentlyLoading">
-      <button type="submit" class="loginButton">Sign In</button>
+      <button type="submit" class="button loginButton">Sign In</button>
     </div>
 
     <ng-template #currentlyLoading>
-      <button class="loginButton loadingButton">
+      <button class="button loginButton loadingButton">
         <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
       </button>
     </ng-template>

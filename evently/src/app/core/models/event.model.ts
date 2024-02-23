@@ -2,7 +2,8 @@ export interface appEvent {
   uid?: string;
   title?: string;
   description?: string;
-  date?: Date;
+  startDate?: Date;
+  endDate?: Date;
   dayOfTheWeek?: String;
   genre?: string;
   author?: String;

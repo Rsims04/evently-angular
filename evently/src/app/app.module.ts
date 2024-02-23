@@ -24,6 +24,9 @@ import { ModalComponent } from './core/components/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
 import { ManageUsersDialogComponent } from './pages/manage-users/manage-users-dialog/manage-users-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -61,6 +64,9 @@ import { AddEventDialogComponent } from './pages/dashboard/whats-on/whats-on/add
     BrowserAnimationsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     FontAwesomeModule,
   ],
   providers: [AuthService, UserService, EventService],

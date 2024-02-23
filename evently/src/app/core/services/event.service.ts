@@ -45,7 +45,8 @@ export class EventService {
         uid: uid,
         title: params.title,
         description: params.description,
-        date: params.date,
+        startDate: params.startDate,
+        endDate: params.endDate,
         dayOfTheWeek: 'Monday',
         genre: params.genre,
         author: user.displayName,
@@ -63,7 +64,8 @@ type Fields = {
   uid?: string;
   title?: string;
   description?: string;
-  date?: Date;
+  startDate?: Date;
+  endDate?: Date;
   dayOfTheWeek?: String;
   genre?: string;
   author?: String;

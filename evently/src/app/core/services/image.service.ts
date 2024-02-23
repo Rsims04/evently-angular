@@ -14,7 +14,11 @@ export class ImageService {
   constructor(private storage: Storage, private userService: UserService) {}
 
   addData(selectedFile, currentPage): Promise<boolean> {
-    const storageRef = ref(this.storage, `${currentPage}/${selectedFile.name}`);
+    const timeStamp = new Date().getTime();
+    const storageRef = ref(
+      this.storage,
+      `${currentPage}/${timeStamp}-${selectedFile.name}`
+    );
     const uploadTask = uploadBytesResumable(storageRef, selectedFile);
     return new Promise((resolve, reject) => {
       uploadTask.on(
@@ -52,7 +56,11 @@ export class ImageService {
   }
 
   addDataEvent(selectedFile, currentPage): Promise<string> {
-    const storageRef = ref(this.storage, `${currentPage}/${selectedFile.name}`);
+    const timeStamp = new Date().getTime();
+    const storageRef = ref(
+      this.storage,
+      `${currentPage}/${timeStamp}-${selectedFile.name}`
+    );
     const uploadTask = uploadBytesResumable(storageRef, selectedFile);
     return new Promise((resolve, reject) => {
       uploadTask.on(

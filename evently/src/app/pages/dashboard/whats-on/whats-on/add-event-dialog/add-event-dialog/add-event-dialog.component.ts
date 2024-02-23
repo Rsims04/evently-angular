@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { NativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -31,6 +32,8 @@ export class AddEventDialogComponent {
       title: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
+      start: [Date, Validators.required],
+      end: [Date, Validators.required],
       genre: ['', Validators.required],
       location: ['', Validators.required],
     });
@@ -63,7 +66,8 @@ export class AddEventDialogComponent {
         {
           title: this.f['title'].value,
           description: this.f['description'].value,
-          date: this.f['date'].value,
+          startDate: this.f['start'].value,
+          endDate: this.f['end'].value,
           genre: this.f['genre'].value,
           location: this.f['location'].value,
           photoURL: this.photoURL,
