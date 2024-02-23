@@ -6,7 +6,8 @@ import {
   faMagnifyingGlass,
   faCalendarPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEventDialogComponent } from './whats-on/whats-on/add-event-dialog/add-event-dialog/add-event-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent {
   faMagnifyingGlass = faMagnifyingGlass;
   faCalendarPlus = faCalendarPlus;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.user = this.userService.getUser();
@@ -30,4 +31,17 @@ export class DashboardComponent {
    * Activates Drop Down Menu For Sorting Options
    */
   dropDownMenu() {}
+
+  /**
+   * Opens modal and sends correct field information.
+   */
+  createEvent(): void {
+    const user = this.user;
+    const dialogRef = this.dialog.open(AddEventDialogComponent, {
+      panelClass: 'custom-dialog-class',
+      data: {
+        user,
+      },
+    });
+  }
 }

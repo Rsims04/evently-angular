@@ -67,11 +67,11 @@
     </div>
 
     <div *ngIf="loading == false; else currentlyLoading">
-      <button class="create_account_Button" type="submit">Add User</button>
+      <button class="button create_account_Button" type="submit">Add User</button>
     </div>
 
     <ng-template #currentlyLoading>
-      <button class="create_account_button loadingButton">
+      <button class="button create_account_button loadingButton">
         <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
       </button>
     </ng-template>
@@ -84,7 +84,7 @@
     <h1>Delete User</h1>
     <p id="delete_p">Are you sure you want to delete {{ userName }}?</p>
     <br />
-    <button class="delete_user_button" (click)="deleteUser()">
+    <button class="button delete_user_button" (click)="deleteUser()">
       Yes, I'm sure.
     </button>
   </div>

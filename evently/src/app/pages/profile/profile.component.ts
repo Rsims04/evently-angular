@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';

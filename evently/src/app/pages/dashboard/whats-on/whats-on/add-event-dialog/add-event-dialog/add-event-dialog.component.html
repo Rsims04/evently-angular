@@ -1,0 +1,130 @@
+<!-- Modal Add Event -->
+<div>
+  <form [formGroup]="form" (ngSubmit)="createEvent()">
+    <h1>Create New Event</h1>
+    <br />
+    <div class="form-container">
+      <div class="form-item">
+        <div class="form-details">
+          <label>Title: </label><br />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="title"
+            required
+          />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['title'].errors">
+            *Please input a title.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <div class="form-details">
+          <label>Description: </label><br />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="description"
+            required
+          />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['description'].errors">
+            *Please input a description.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <div class="form-details">
+          <label>Date: </label><br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose a date</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                matStartDate
+                formControlName="start"
+                placeholder="Start date"
+              />
+              <input matEndDate formControlName="end" placeholder="End date" />
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+          </mat-form-field>
+
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['start'].errors">
+            *Please input a date range.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <div class="form-details">
+          <label>Type: </label><br />
+          <select #select formControlName="genre" required>
+            <option value="Event" selected>Event</option>
+            <option value="Art">Art</option>
+            <option value="Festival">Festival</option>
+            <option value="Food">Food</option>
+            <option value="Function">Function</option>
+            <option value="Holiday">Holiday</option>
+            <option value="Music">Music</option>
+            <option value="Networking">Networking</option>
+            <option value="Party">Party</option>
+          </select>
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['genre'].errors">
+            *Please select a type.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <div class="form-details">
+          <label>Location: </label><br />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="location"
+            required
+          />
+          <br /><br />
+          <div class="is-error" *ngIf="submitted && f['location'].errors">
+            *Please enter a location.
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo Upload -->
+
+      <div class="form-item">
+        <div class="form-details">
+          <label>Image Upload: </label><br />
+          <app-image-upload
+            [currentPage]="pageName"
+            (imageEventUploadEvent)="imageUploadStatus($event)"
+          ></app-image-upload>
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading == false; else currentlyLoading">
+      <button class="button button-large create_account_Button" type="submit">
+        Add Event
+      </button>
+    </div>
+
+    <ng-template #currentlyLoading>
+      <button class="button button-large create_account_button loadingButton">
+        <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+      </button>
+    </ng-template>
+  </form>
+</div>

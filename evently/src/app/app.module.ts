@@ -24,6 +24,9 @@ import { ModalComponent } from './core/components/modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProfileDialogComponent } from './pages/profile/profile-dialog/profile-dialog.component';
 import { ManageUsersDialogComponent } from './pages/manage-users/manage-users-dialog/manage-users-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -31,6 +34,7 @@ import { UserService } from './core/services/user.service';
 import { EventService } from './core/services/event.service';
 import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.component';
 import { ImageUploadComponent } from './core/components/image-upload/image-upload.component';
+import { AddEventDialogComponent } from './pages/dashboard/whats-on/whats-on/add-event-dialog/add-event-dialog/add-event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { ImageUploadComponent } from './core/components/image-upload/image-uploa
     ProfileDialogComponent,
     ManageUsersDialogComponent,
     ImageUploadComponent,
+    AddEventDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,9 @@ import { ImageUploadComponent } from './core/components/image-upload/image-uploa
     BrowserAnimationsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     FontAwesomeModule,
   ],
   providers: [AuthService, UserService, EventService],
