@@ -3,12 +3,18 @@
   <div class="form-container">
     <div class="form-details">
       <label for="detail">New {{ data.fieldName }}: </label><br />
-      <input type="text" id="detail" name="detail" #detail /> <br /><br />
+      <input class="form-input" type="text" id="detail" name="detail" #detail />
+      <br /><br />
     </div>
   </div>
 
   <div *ngIf="loading == false; else currentlyLoading">
-    <button class="button button-large submit" (click)="changeDetail(detail.value)">Confirm</button>
+    <button
+      class="button button-large submit"
+      (click)="changeDetail(detail.value)"
+    >
+      Confirm
+    </button>
   </div>
 
   <ng-template #currentlyLoading>

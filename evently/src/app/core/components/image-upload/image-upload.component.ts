@@ -11,6 +11,7 @@ export class ImageUploadComponent {
   selectedFile: File = null;
   loading = false;
   uploadSuccess = false;
+  uploadFailure = false;
   faThumbsUp = faThumbsUp;
 
   constructor(private imageService: ImageService) {}
@@ -37,6 +38,7 @@ export class ImageUploadComponent {
   }
 
   async addData(): Promise<any> {
+    this.uploadFailure = false;
     this.loading = true;
     await this.imageService.addData(this.selectedFile, this.currentPage).then(
       (res) => {
@@ -49,7 +51,9 @@ export class ImageUploadComponent {
         }, 3000);
       },
       (rej) => {
+        this.uploadFailure = true;
         console.log('Failure');
+        this.loading = false;
         console.log(rej);
         this.imageUploadSuccess(false);
       }
@@ -58,6 +62,7 @@ export class ImageUploadComponent {
 
   async addDataEvent(): Promise<any> {
     console.log('HERE:', 'ADD DATA EVENT()');
+    this.uploadFailure = false;
     this.loading = true;
     await this.imageService
       .addDataEvent(this.selectedFile, this.currentPage)
@@ -72,7 +77,9 @@ export class ImageUploadComponent {
           }, 3000);
         },
         (rej) => {
+          this.uploadFailure = true;
           console.log('Failure');
+          this.loading = false;
           console.log(rej);
           this.imageEventUploadSuccess(rej);
         }

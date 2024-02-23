@@ -14,6 +14,10 @@ export class ImageService {
   constructor(private storage: Storage, private userService: UserService) {}
 
   addData(selectedFile, currentPage): Promise<boolean> {
+    if (selectedFile === null) {
+      return Promise.reject(false);
+    }
+
     const timeStamp = new Date().getTime();
     const storageRef = ref(
       this.storage,
@@ -56,6 +60,10 @@ export class ImageService {
   }
 
   addDataEvent(selectedFile, currentPage): Promise<string> {
+    if (selectedFile === null) {
+      return Promise.reject(null);
+    }
+
     const timeStamp = new Date().getTime();
     const storageRef = ref(
       this.storage,

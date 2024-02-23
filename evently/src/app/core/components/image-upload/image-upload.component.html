@@ -9,7 +9,11 @@
       autocomplete="off"
       accept=".png,.jpg"
     />
-    <button class="button" *ngIf="currentPage == 'profile'" (click)="addData()">
+    <button
+      class="button upload-button"
+      *ngIf="currentPage == 'profile'"
+      (click)="addData()"
+    >
       Upload Image
     </button>
     <button
@@ -37,3 +41,7 @@
     <p id="success-text">Upload Successful</p>
   </div>
 </ng-template>
+
+<div *ngIf="uploadFailure == true" class="failure">
+  Please upload a valid image file.
+</div>
