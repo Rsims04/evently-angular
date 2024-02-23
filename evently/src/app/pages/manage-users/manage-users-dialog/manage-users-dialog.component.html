@@ -8,7 +8,12 @@
       <div class="form-set">
         <div class="create-account-details">
           <label>Username: </label><br />
-          <input type="text" formControlName="displayName" required />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="displayName"
+            required
+          />
           <br /><br />
           <div class="is-error" *ngIf="submitted && f['displayName'].errors">
             *A Valid Username Is Required.
@@ -17,7 +22,12 @@
 
         <div class="create-account-details">
           <label>Email: </label><br />
-          <input type="text" formControlName="email" required />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="email"
+            required
+          />
           <br /><br />
           <div class="is-error" *ngIf="submitted && f['email'].errors">
             *A Valid Email Is Required.
@@ -28,7 +38,12 @@
       <div class="form-set">
         <div class="create-account-details">
           <label>First Name: </label><br />
-          <input type="text" formControlName="firstName" required />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="firstName"
+            required
+          />
           <br /><br />
           <div class="is-error" *ngIf="submitted && f['firstName'].errors">
             *Your First Name Is Required.
@@ -37,7 +52,12 @@
 
         <div class="create-account-details">
           <label>Last Name: </label><br />
-          <input type="text" formControlName="lastName" required />
+          <input
+            class="form-input"
+            type="text"
+            formControlName="lastName"
+            required
+          />
           <br /><br />
           <div class="is-error" *ngIf="submitted && f['lastName'].errors">
             *Your Last Name Is Required.
@@ -48,7 +68,12 @@
       <div class="form-set">
         <div class="create-account-details">
           <label>Password: </label><br />
-          <input type="password" formControlName="password" required />
+          <input
+            class="form-input"
+            type="password"
+            formControlName="password"
+            required
+          />
           <br /><br />
           <div class="is-error" *ngIf="submitted && f['password'].errors">
             *A Password Is Required.
@@ -67,7 +92,9 @@
     </div>
 
     <div *ngIf="loading == false; else currentlyLoading">
-      <button class="button create_account_Button" type="submit">Add User</button>
+      <button class="button create_account_Button" type="submit">
+        Add User
+      </button>
     </div>
 
     <ng-template #currentlyLoading>

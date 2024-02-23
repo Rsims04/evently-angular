@@ -132,3 +132,15 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mdc-circular-progress__indeterminate-container circle,
+.mdc-circular-progress__circle-clipper circle {
+  stroke: #6d4199 !important;
+}
+
+.loadingButton {
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}

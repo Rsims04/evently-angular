@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="createEvent()">
     <h1>Create New Event</h1>
     <br />
-    <div class="form-container">
+    <div class="form-container-add-event">
       <div class="form-item">
         <div class="form-details">
           <label>Title: </label><br />
@@ -46,6 +46,7 @@
                 matStartDate
                 formControlName="start"
                 placeholder="Start date"
+                size="300px"
               />
               <input matEndDate formControlName="end" placeholder="End date" />
             </mat-date-range-input>

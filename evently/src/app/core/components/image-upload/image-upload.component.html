@@ -1,26 +1,47 @@
-<div class="flex" *ngIf="loading == false; else currentlyLoading">
-  <input
-    type="file"
-    id="file"
-    #userPhoto
-    (change)="onFileSelected($event)"
-    name="image"
-    autocomplete="off"
-    accept=".png,.jpg"
-  />
-  <button class="button" *ngIf="currentPage == 'profile'" (click)="addData()">
-    Upload Image
-  </button>
-  <button
-    class="button upload-button"
-    *ngIf="currentPage == 'event'"
-    (click)="addDataEvent()"
-  >
-    Upload Image
-  </button>
+<div *ngIf="uploadSuccess == false; else success">
+  <div class="flex" *ngIf="loading == false; else currentlyLoading">
+    <input
+      type="file"
+      id="file"
+      #userPhoto
+      (change)="onFileSelected($event)"
+      name="image"
+      autocomplete="off"
+      accept=".png,.jpg"
+    />
+    <button
+      class="button upload-button"
+      *ngIf="currentPage == 'profile'"
+      (click)="addData()"
+    >
+      Upload Image
+    </button>
+    <button
+      class="button upload-button"
+      *ngIf="currentPage == 'event'"
+      (click)="addDataEvent()"
+    >
+      Upload Image
+    </button>
+  </div>
+  <ng-template #currentlyLoading>
+    <button class="button upload-button loadingButton">
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    </button>
+  </ng-template>
 </div>
-<ng-template #currentlyLoading>
-  <button class="button upload-button loadingButton">
-    <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
-  </button>
+
+<ng-template #success>
+  <div class="success-container">
+    <fa-icon
+      [icon]="faThumbsUp"
+      [animation]="'beat'"
+      class="fa-solid fa-thumbs-up fa-3x"
+    ></fa-icon>
+    <p id="success-text">Upload Successful</p>
+  </div>
 </ng-template>
+
+<div *ngIf="uploadFailure == true" class="failure">
+  Please upload a valid image file.
+</div>

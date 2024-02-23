@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImageService } from '../../services/image.service';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -9,6 +10,9 @@ import { ImageService } from '../../services/image.service';
 export class ImageUploadComponent {
   selectedFile: File = null;
   loading = false;
+  uploadSuccess = false;
+  uploadFailure = false;
+  faThumbsUp = faThumbsUp;
 
   constructor(private imageService: ImageService) {}
   ngOnInit() {}
@@ -34,15 +38,22 @@ export class ImageUploadComponent {
   }
 
   async addData(): Promise<any> {
+    this.uploadFailure = false;
     this.loading = true;
     await this.imageService.addData(this.selectedFile, this.currentPage).then(
       (res) => {
         console.log('Success');
         this.loading = false;
-        this.imageUploadSuccess(true);
+        this.uploadSuccess = true;
+        setTimeout(() => {
+          console.log('Timeout');
+          this.imageUploadSuccess(true);
+        }, 3000);
       },
       (rej) => {
+        this.uploadFailure = true;
         console.log('Failure');
+        this.loading = false;
         console.log(rej);
         this.imageUploadSuccess(false);
       }
@@ -51,18 +62,24 @@ export class ImageUploadComponent {
 
   async addDataEvent(): Promise<any> {
     console.log('HERE:', 'ADD DATA EVENT()');
+    this.uploadFailure = false;
     this.loading = true;
     await this.imageService
       .addDataEvent(this.selectedFile, this.currentPage)
       .then(
         (res) => {
-          console.log('Success');
           this.loading = false;
-          console.log('RES:', res);
-          this.imageEventUploadSuccess(res);
+          this.uploadSuccess = true;
+          setTimeout(() => {
+            console.log('Timeout');
+            console.log('RES:', res);
+            this.imageEventUploadSuccess(res);
+          }, 3000);
         },
         (rej) => {
+          this.uploadFailure = true;
           console.log('Failure');
+          this.loading = false;
           console.log(rej);
           this.imageEventUploadSuccess(rej);
         }
