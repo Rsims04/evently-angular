@@ -45,6 +45,8 @@
             ></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
             <mat-hint>MM/DD/YYYY</mat-hint>
+            {{ f["start"].value }}
+            {{ f["end"].value }}
           </mat-form-field>
 
           <br /><br />
@@ -53,7 +55,6 @@
           </div>
         </div>
 
-        <!-- THIS NEEDS TO BE SELECT -->
         <div class="create-account-details">
           <label>Type: </label><br />
           <select #select formControlName="genre" required>

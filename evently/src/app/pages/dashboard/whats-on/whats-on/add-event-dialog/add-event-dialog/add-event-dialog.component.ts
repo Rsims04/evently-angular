@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { NativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -20,6 +19,10 @@ export class AddEventDialogComponent {
   photoURL: string;
   submitted = false;
   loading: boolean = false;
+
+  startDate: string;
+  endDate: string;
+  dayOfWeek: string;
 
   constructor(
     public dialogRef: MatDialogRef<AddEventDialogComponent>,
@@ -50,12 +53,9 @@ export class AddEventDialogComponent {
     this.dialogRef.close(this.data);
   }
 
-  // /**
-  //  * Changes user details on auth and database.
-  //  * To user input.
-  //  *
-  //  * TODO: validate email and check username (duplicates).
-  //  */
+  /**
+   * Adds Event to Database
+   */
   async createEvent() {
     this.loading = true;
 

@@ -34,6 +34,19 @@ export class EventService {
     });
   }
 
+  getWeekDay(date: Date) {
+    var weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    return weekday[date.getDay()];
+  }
+
   /**
    * Writes event data to database.
    */
@@ -45,9 +58,9 @@ export class EventService {
         uid: uid,
         title: params.title,
         description: params.description,
-        startDate: params.startDate,
-        endDate: params.endDate,
-        dayOfTheWeek: 'Monday',
+        startDate: params.startDate.toLocaleDateString(),
+        endDate: params.endDate.toLocaleDateString(),
+        dayOfTheWeek: this.getWeekDay(params.startDate),
         genre: params.genre,
         author: user.displayName,
         photoURL: params.photoURL,
