@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
 import { EventService } from 'src/app/core/services/event.service';
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-add-event-dialog',
