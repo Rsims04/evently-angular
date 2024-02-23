@@ -61,11 +61,6 @@
   cursor: pointer;
 }
 
-:host ::ng-deep .mdc-circular-progress__indeterminate-container circle,
-.mdc-circular-progress__circle-clipper circle {
-  stroke: #6d4199 !important;
-}
-
 /*
   RESPONSIVE
 */
