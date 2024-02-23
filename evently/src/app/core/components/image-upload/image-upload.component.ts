@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImageService } from '../../services/image.service';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -9,6 +10,8 @@ import { ImageService } from '../../services/image.service';
 export class ImageUploadComponent {
   selectedFile: File = null;
   loading = false;
+  uploadSuccess = false;
+  faThumbsUp = faThumbsUp;
 
   constructor(private imageService: ImageService) {}
   ngOnInit() {}
@@ -39,7 +42,11 @@ export class ImageUploadComponent {
       (res) => {
         console.log('Success');
         this.loading = false;
-        this.imageUploadSuccess(true);
+        this.uploadSuccess = true;
+        setTimeout(() => {
+          console.log('Timeout');
+          this.imageUploadSuccess(true);
+        }, 3000);
       },
       (rej) => {
         console.log('Failure');
@@ -56,10 +63,13 @@ export class ImageUploadComponent {
       .addDataEvent(this.selectedFile, this.currentPage)
       .then(
         (res) => {
-          console.log('Success');
           this.loading = false;
-          console.log('RES:', res);
-          this.imageEventUploadSuccess(res);
+          this.uploadSuccess = true;
+          setTimeout(() => {
+            console.log('Timeout');
+            console.log('RES:', res);
+            this.imageEventUploadSuccess(res);
+          }, 3000);
         },
         (rej) => {
           console.log('Failure');

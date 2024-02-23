@@ -5,4 +5,32 @@
 .flex {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.success-container {
+  text-align: center;
+}
+
+.fa-thumbs-up {
+  --fa-animation-duration: 1s;
+  color: green;
+}
+
+#success-text {
+  color: green;
+  font-size: 1em;
+  font-weight: bold;
+  animation-name: fadeinandup;
+  animation-duration: 2s;
+}
+@keyframes fadeinandup {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
