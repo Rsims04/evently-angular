@@ -34,7 +34,6 @@ export class AddEventDialogComponent {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      date: ['', Validators.required],
       start: [Date, Validators.required],
       end: [Date, Validators.required],
       genre: ['', Validators.required],
@@ -62,7 +61,6 @@ export class AddEventDialogComponent {
 
     if (this.form.invalid) {
       this.loading = false;
-      console.log('INVALID');
       return;
     }
 
@@ -80,7 +78,7 @@ export class AddEventDialogComponent {
         this.data.user
       )
       .then((res) => {
-        console.log('Added Event:');
+        console.log('Added Event:', res);
         this.loading = false;
         this.submitted = false;
         this.dialogRef.close(this.data);

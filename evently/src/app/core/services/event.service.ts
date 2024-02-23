@@ -25,12 +25,14 @@ export class EventService {
 
   addEvent(params: Fields, user: appUser): Promise<Observable<any>> {
     return new Promise<any>((resolve, reject) => {
-      // Format Date
-
-      // Get Day of Week
-      console.log('PARAMS: ', params);
-
-      this.writeToDB(params, user);
+      this.writeToDB(params, user).then(
+        (res) => {
+          resolve(res);
+        },
+        (rej) => {
+          reject(rej);
+        }
+      );
     });
   }
 
