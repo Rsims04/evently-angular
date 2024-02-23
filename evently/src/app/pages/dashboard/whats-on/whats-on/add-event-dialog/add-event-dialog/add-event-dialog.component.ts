@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { appUser } from 'src/app/core/models/user.model';
@@ -9,6 +9,7 @@ import { UserService } from 'src/app/core/services/user.service';
   selector: 'app-add-event-dialog',
   templateUrl: './add-event-dialog.component.html',
   styleUrls: ['./add-event-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddEventDialogComponent {
   pageName: string = 'event';
@@ -28,7 +29,6 @@ export class AddEventDialogComponent {
     public dialogRef: MatDialogRef<AddEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddEventData,
     private formBuilder: FormBuilder,
-    private userService: UserService,
     private eventService: EventService
   ) {
     this.form = this.formBuilder.group({
@@ -58,8 +58,13 @@ export class AddEventDialogComponent {
    */
   async createEvent() {
     this.loading = true;
+    this.submitted = true;
 
-    console.log(this.f['title'].value, this.photoURL);
+    if (this.form.invalid) {
+      this.loading = false;
+      console.log('INVALID');
+      return;
+    }
 
     await this.eventService
       .addEvent(
@@ -76,9 +81,13 @@ export class AddEventDialogComponent {
       )
       .then((res) => {
         console.log('Added Event:');
+        this.loading = false;
+        this.submitted = false;
         this.dialogRef.close(this.data);
       })
       .catch((error) => {
+        this.loading = false;
+        this.submitted = false;
         console.log('Error Creating Event: ', error.message);
       });
   }

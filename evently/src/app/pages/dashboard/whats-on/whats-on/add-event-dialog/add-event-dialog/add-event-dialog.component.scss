@@ -1,2 +1,116 @@
-.mat-calendar-body-cell {
+.mdc-dialog__surface {
+  border-radius: 20px !important;
+  padding: 50px 100px 50px 100px !important;
+  width: 90vw !important;
+  min-width: 550px;
+  text-align: center;
+}
+
+.form-details select {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 85px 5px 85px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-details select:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.form-item {
+  width: 300px;
+  margin: auto;
+}
+
+.form-details {
+  width: 300px;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.form-details label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*
+    INPUTS
+  */
+
+.form-details .form-input {
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  padding: 5px 20px 5px 20px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-details .form-input:focus {
+  outline: none;
+  border-bottom: 2px solid #8011e2;
+}
+
+.form-details .is-error {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 0.5em;
+  margin-bottom: 0em;
+  text-align: center;
+  font-size: 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create_account_Button {
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.loadingButton {
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
+}
+
+.form-container {
+  padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #6d4199;
+  text-align: left;
+}
+
+select:hover {
+  border-bottom: 2px solid #8011e2;
+  cursor: pointer;
+}
+
+.loadingButton {
+  float: left;
+  border: none;
+  background-color: #f4ffff;
+  color: #6d4199;
+  cursor: pointer;
 }
