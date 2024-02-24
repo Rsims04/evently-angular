@@ -35,6 +35,7 @@ import { EventService } from './core/services/event.service';
 import { WhatsOnComponent } from './pages/dashboard/whats-on/whats-on/whats-on.component';
 import { ImageUploadComponent } from './core/components/image-upload/image-upload.component';
 import { AddEventDialogComponent } from './pages/dashboard/whats-on/whats-on/add-event-dialog/add-event-dialog/add-event-dialog.component';
+import { EventDialogComponent } from './pages/dashboard/whats-on/whats-on/event-dialog/event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AddEventDialogComponent } from './pages/dashboard/whats-on/whats-on/add
     ManageUsersDialogComponent,
     ImageUploadComponent,
     AddEventDialogComponent,
+    EventDialogComponent,
   ],
   imports: [
     BrowserModule,

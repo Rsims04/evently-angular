@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { appEvent } from 'src/app/core/models/event.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog/add-event-dialog.component';
+import { EventDialogComponent } from './event-dialog/event-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-this-week',
@@ -15,9 +15,18 @@ export class WhatsOnComponent {
   events$: Observable<appEvent[]> | null;
   faMapMarkerAlt = faMapMarkerAlt;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.events$ = this.eventService.getEvents();
+  }
+
+  openEvent(selectedEvent: appEvent) {
+    const dialogRef = this.dialog.open(EventDialogComponent, {
+      panelClass: 'custom-dialog-class',
+      width: '90vw',
+      height: '90vh',
+      data: selectedEvent,
+    });
   }
 }
