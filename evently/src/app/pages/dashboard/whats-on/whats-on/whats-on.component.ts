@@ -23,7 +23,7 @@ export class WhatsOnComponent {
 
   openEvent(selectedEvent: appEvent) {
     const dialogRef = this.dialog.open(EventDialogComponent, {
-      panelClass: 'custom-dialog-class',
+      panelClass: 'event-dialog-class',
       width: '90vw',
       height: '90vh',
       data: selectedEvent,

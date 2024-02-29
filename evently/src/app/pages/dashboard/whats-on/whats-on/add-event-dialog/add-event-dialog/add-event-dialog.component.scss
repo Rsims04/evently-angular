@@ -1,4 +1,4 @@
-.mdc-dialog__surface {
+.add-event-dialog-class .mdc-dialog__surface {
   border-radius: 20px !important;
   padding: 50px 100px 50px 100px !important;
   min-width: 550px;
@@ -6,36 +6,36 @@
   background-color: #f4ffff !important;
 }
 
-.mat-calendar-body-selected {
+.add-event-dialog-class .mat-calendar-body-selected {
   background-color: #6d4199 !important;
   color: white !important;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
+.add-event-dialog-class .mat-focused .mat-form-field-label {
   /*change color of label*/
   color: #6d4199 !important;
 }
 
-::ng-deep .mat-form-field-underline {
+.add-event-dialog-class .mat-form-field-underline {
   /*change color of underline*/
   background-color: #6d4199 !important;
 }
 
-::ng-deep .mat-form-field-ripple {
+.add-event-dialog-class .mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: #6d4199 !important;
 }
 
-::ng-deep .mat-form-field-label {
+.add-event-dialog-class .mat-form-field-label {
   /*change color of label*/
   color: #6d4199 !important;
 }
 
-mat-datepicker-toggle {
+.add-event-dialog-class .mat-datepicker-toggle {
   color: #6d4199 !important;
 }
 
-.mat-mdc-form-field {
+.add-event-dialog-class .mat-mdc-form-field {
   width: 100%;
 }
 

@@ -27,7 +27,7 @@ export class ManageUsersComponent implements OnInit {
    */
   openModal(field: String, userName?: String, uid?: String): void {
     const dialogRef = this.dialog.open(ManageUsersDialogComponent, {
-      panelClass: 'custom-dialog-class',
+      panelClass: 'manage-users-dialog-class',
       data: {
         field,
         userName,
