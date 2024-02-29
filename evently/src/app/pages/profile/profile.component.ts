@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
    */
   editDetail(field: string, fieldName: string): void {
     const dialogRef = this.dialog.open(ProfileDialogComponent, {
-      panelClass: 'custom-dialog-class',
+      panelClass: 'profile-dialog-class',
       data: {
         field,
         fieldName,
