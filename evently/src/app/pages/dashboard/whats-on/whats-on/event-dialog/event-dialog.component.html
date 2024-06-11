@@ -36,8 +36,7 @@
     <div class="info-left">
       <h2 class="section-heading">Full Description:</h2>
       <p class="description">
-        {{ data.description | slice : 0 : 200
-        }}<span *ngIf="data.description.length > 200">...</span>
+        {{ data.description }}
       </p>
     </div>
   </div>
