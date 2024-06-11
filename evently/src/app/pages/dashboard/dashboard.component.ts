@@ -38,7 +38,7 @@ export class DashboardComponent {
   createEvent(): void {
     const user = this.user;
     const dialogRef = this.dialog.open(AddEventDialogComponent, {
-      panelClass: 'custom-dialog-class',
+      panelClass: 'dashboard-dialog',
       data: {
         user,
       },
